@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_random_joke"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/grid_large"
+        android:layout_marginLeft="@dimen/grid_normal"
+        android:layout_marginRight="@dimen/grid_normal"
+        android:textColor="@color/black"
+        android:background="@color/colorPrimary"
+        android:text="@string/dashboard_button_random_joke"
+        app:layout_constraintBottom_toTopOf="@id/button_custom_joke" />
+
+    <Button
+        android:id="@+id/button_custom_joke"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/grid_normal"
+        android:layout_marginRight="@dimen/grid_normal"
+        android:text="@string/dashboard_button_custom_joke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/button_multiple_jokes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/dashboard_button_infinite_jokes"
+        android:layout_marginTop="@dimen/grid_large"
+        android:layout_marginLeft="@dimen/grid_normal"
+        android:layout_marginRight="@dimen/grid_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@+id/button_custom_joke"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
