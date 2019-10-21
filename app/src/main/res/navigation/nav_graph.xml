@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="prieto.fernando.jokesapp.view.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/goToCustomJokeFragment"
+            app:destination="@id/customJokeFragment"
+            app:popUpTo="@id/dashboardFragment" />
+        <action
+            android:id="@+id/goToInfiniteJokesFragment"
+            app:destination="@id/infiniteJokesFragment"
+            app:popUpTo="@id/dashboardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customJokeFragment"
+        android:name="prieto.fernando.jokesapp.view.custom.CustomJokeFragment"
+        tools:layout="@layout/fragment_custom_joke" />
+
+    <fragment
+        android:id="@+id/infiniteJokesFragment"
+        android:name="prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment"
+        tools:layout="@layout/fragment_infinite_jokes" />
+
+</navigation>

@@ -1,0 +1,6 @@
+apply from: "$rootDir/base-android-library.gradle"
+
+dependencies {
+    implementation project(':data-jokesapi')
+    implementation project(':data-cache')
+}

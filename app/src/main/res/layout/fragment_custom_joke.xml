@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/first_name_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/grid_normal"
+        android:layout_marginRight="@dimen/grid_normal"
+        android:layout_marginBottom="@dimen/grid_huge"
+        app:layout_constraintBottom_toTopOf="@id/last_name_text_container">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/first_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/custom_joke_first_name_hint"
+            android:inputType="text"
+            android:textSize="@dimen/letter_normal"
+            tools:text="Jhon" />
+
+        <TextView
+            android:id="@+id/first_name_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_joke_first_name_error"
+            android:textColor="@color/red"
+            android:textSize="@dimen/letter_small"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/last_name_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/grid_normal"
+        android:layout_marginRight="@dimen/grid_normal"
+        android:layout_marginBottom="@dimen/grid_huge"
+        app:layout_constraintBottom_toTopOf="@id/button_done">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/last_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/custom_joke_last_name_hint"
+            android:inputType="text"
+            android:textSize="@dimen/letter_normal"
+            tools:text="Snow" />
+
+        <TextView
+            android:id="@+id/last_name_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_joke_last_name_error"
+            android:textColor="@color/red"
+            android:textSize="@dimen/letter_small"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/button_done"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/grid_normal"
+        android:layout_marginRight="@dimen/grid_normal"
+        android:background="@color/colorPrimary"
+        android:enabled="false"
+        android:text="@string/custom_joke_button_done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
