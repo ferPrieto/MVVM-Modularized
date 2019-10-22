@@ -42,7 +42,7 @@ class CustomJokeViewModelTest {
     }
 
     @Test
-    fun `Given names when customRandomJoke then returns customRandomJokeRetrieved invoked`() {
+    fun `Given names when customRandomJoke then customRandomJokeRetrieved invoked`() {
         // Given
         val firstName = "firstName"
         val lastName = "lastName"
