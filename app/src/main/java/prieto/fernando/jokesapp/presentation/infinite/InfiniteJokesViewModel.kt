@@ -8,6 +8,7 @@ import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.jokesapp.R
 import prieto.fernando.jokesapp.presentation.data.RandomJokeUiModel
 import prieto.fernando.jokesapp.presentation.mapper.RandomJokeDomainToUiModelMapper
+import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
 import timber.log.Timber
 
@@ -25,7 +26,7 @@ class InfiniteJokesViewModel @Inject constructor(
     application: Application,
     private val multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase,
     private val randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
-) : prieto.fernando.presentation.BaseViewModel(application),
+) : BaseViewModel(application),
     CustomJokeViewModelInputs,
     CustomJokeViewModelOutputs {
 
