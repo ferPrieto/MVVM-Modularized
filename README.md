@@ -27,6 +27,10 @@ In order to follow the latest Android standards, the project will include the ne
 - Introduce LiveData
 - UI Tests
 
+## Demo
+
+![Demo](Demo-JokesApp.gif)
+
 #  License
 
     Copyright 2019 Fernando Prieto Moyano
