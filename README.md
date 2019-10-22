@@ -19,6 +19,15 @@ The initial Clean Architecture approach was developed by me in a Bitbucket repos
 - MVVM
 - RXJava
 
+### Goals
+
+In order to follow the latest Android standards, the project will include the next points (progressively):
+- Complete the VM unit tests
+- LiveData, instead of Rx (outputs)
+- UI Tests
+- MockWebServer for testing HTTP clients.
+- Finding out a better approach for the local Source in order to test it properly
+
 ## Libraries Used
 
 * [Rx][0] for reactive style programming.
@@ -39,14 +48,6 @@ The initial Clean Architecture approach was developed by me in a Bitbucket repos
 [6]: https://developer.android.com/training/testing/espresso/
 [7]: https://github.com/nhaarman/mockito-kotlin 
 
-### Goals
-
-In order to follow the latest Android standards, the project will include the next points (progressively):
-- Complete the VM unit tests
-- LiveData, instead of Rx (outputs)
-- UI Tests
-- MockWebServer for testing HTTP clients.
-- Finding out a better approach for the local Source in order to test it properly
 
 ## Demo
 
