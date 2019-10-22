@@ -18,14 +18,26 @@ http://www.icndb.com/api/
 The initial Clean Architecture approach was developed by me in a Bitbucket repository using:
 - MVVM
 - RXJava
-- JUnit
+
+Libraries Used
+-------------- 
+* [Rx][1] for reactive style programming.
+* [Navigation][2] for in-app navigation. 
+* [Rx][3] for cache storage.
+* [Dagger][4] for dependency injection.
+* [Retrofit][5] for REST api communication.  
+* [Timber][6] for logging.
+* [Espresso][7] for UI tests.
+* [Mockito-Kotlin][8] for mocking in tests.
 
 ### Goals
 
 In order to follow the latest Android standards, the project will include the next points (progressively):
 - Complete the VM unit tests
-- Introduce LiveData
+- LiveData, instead of Rx (outputs)
 - UI Tests
+- MockWebServer for testing HTTP clients.
+- Finding out a better approach for the local Source in order to test it properly
 
 ## Demo
 
