@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,23 +48,13 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
 
     override fun onResume() {
         super.onResume()
-        setupInputListeners()
-        setupOutputListeners()
         viewModel.inputs.multipleRandomJokes()
-    }
-
-    private fun setupInputListeners() {
-    }
-
-    private fun setupOutputListeners() {
-        viewModel.outputs.error()
-            .subscribe {
-            }.also { subscriptions.add(it) }
     }
 
     override val viewModel: InfiniteJokesViewModel by lazy {
         ViewModelProviders.of(this, vmFactory).get(InfiniteJokesViewModel::class.java).apply {
             observe(multipleRandomJokesRetrieved, ::addJokesToAdapter)
+            observe(errorResource, ::showErrorToast)
         }
     }
 

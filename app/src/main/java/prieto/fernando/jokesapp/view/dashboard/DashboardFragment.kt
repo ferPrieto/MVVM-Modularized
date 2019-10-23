@@ -25,7 +25,6 @@ class DashboardFragment : BaseFragment<DashboardViewModel>() {
     override fun onResume() {
         super.onResume()
         setupInputListeners()
-        setupOutputListeners()
         viewModel.inputs.customRandomJokeForDialog()
     }
 
@@ -41,18 +40,13 @@ class DashboardFragment : BaseFragment<DashboardViewModel>() {
         }
     }
 
-    private fun setupOutputListeners() {
-        viewModel.outputs.error()
-            .subscribe {
-            }.also { subscriptions.add(it) }
-    }
-
     override val viewModel: DashboardViewModel by lazy {
         ViewModelProviders.of(this, vmFactory).get(DashboardViewModel::class.java).apply {
             observe(navigateToCustomJoke, ::navigateToCustomJokeFragment)
             observe(navigateToInfiniteJokes, ::navigateToInfiniteJokesFragment)
             observe(customRandomJokeRetrieved, ::resetCacheAndShowDialog)
             observe(randomJokeRetrieved, ::showRandomJokeDialog)
+            observe(errorResource, ::showErrorToast)
         }
     }
 

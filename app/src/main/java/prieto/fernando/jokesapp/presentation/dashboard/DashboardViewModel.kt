@@ -35,6 +35,7 @@ class DashboardViewModel @Inject constructor(
     val navigateToInfiniteJokes: MutableLiveData<Unit> = MutableLiveData()
     val randomJokeRetrieved: MutableLiveData<RandomJokeAndTitleResource> = MutableLiveData()
     val customRandomJokeRetrieved: MutableLiveData<RandomJokeAndTitleResource> = MutableLiveData()
+    val errorResource: MutableLiveData<Int> = MutableLiveData()
 
     override val inputs: DashboardViewModelInputs
         get() = this
@@ -52,7 +53,7 @@ class DashboardViewModel @Inject constructor(
                 randomJokeRetrieved.value = randomJokeAndTitleResource
             }, { throwable ->
                 Timber.d(throwable)
-                error.onNext(R.string.random_joke_retrieving_error_generic)
+                errorResource.value = R.string.random_joke_retrieving_error_generic
             }).also { subscriptions.add(it) }
     }
 

@@ -28,6 +28,7 @@ class InfiniteJokesViewModel @Inject constructor(
         get() = this
 
     val multipleRandomJokesRetrieved: MutableLiveData<List<RandomJokeUiModel>> = MutableLiveData()
+    val errorResource: MutableLiveData<Int> = MutableLiveData()
 
     override fun multipleRandomJokes() {
         multipleRandomJokeUseCase.execute(JOKES_REQUESTED)
@@ -37,7 +38,7 @@ class InfiniteJokesViewModel @Inject constructor(
                 multipleRandomJokesRetrieved.value = randomJokeUiModels
             }, { throwable ->
                 Timber.d(throwable)
-                error.onNext(R.string.custom_joke_retrieving_error_generic)
+                errorResource.value = R.string.custom_joke_retrieving_error_generic
             }).also { subscriptions.add(it) }
     }
 

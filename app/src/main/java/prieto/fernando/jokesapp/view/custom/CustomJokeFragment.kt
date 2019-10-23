@@ -27,7 +27,6 @@ class CustomJokeFragment : BaseFragment<CustomJokeViewModel>() {
     override fun onResume() {
         super.onResume()
         setupInputListeners()
-        setupOutputListeners()
     }
 
     private val namesData: NamesData
@@ -56,16 +55,11 @@ class CustomJokeFragment : BaseFragment<CustomJokeViewModel>() {
         lastName.addTextChangedListener(formTextWatcher)
     }
 
-    private fun setupOutputListeners() {
-        viewModel.outputs.error()
-            .subscribe {
-            }.also { subscriptions.add(it) }
-    }
-
     override val viewModel: CustomJokeViewModel by lazy {
         ViewModelProviders.of(this, vmFactory).get(CustomJokeViewModel::class.java).apply {
             observe(doneButtonEnabled, ::changeDoneButtonState)
             observe(liveDataCustomRandomJokeRetrieved, ::goBackToDashboard)
+            observe(errorResource, ::showErrorToast)
         }
     }
 

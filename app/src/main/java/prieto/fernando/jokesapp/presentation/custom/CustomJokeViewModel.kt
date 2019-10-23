@@ -23,6 +23,7 @@ class CustomJokeViewModel @Inject constructor(
 
     val doneButtonEnabled: MutableLiveData<Boolean> = MutableLiveData()
     val liveDataCustomRandomJokeRetrieved: MutableLiveData<Unit> = MutableLiveData()
+    val errorResource: MutableLiveData<Int> = MutableLiveData()
 
     override val inputs: CustomJokeViewModelInputs
         get() = this
@@ -32,10 +33,9 @@ class CustomJokeViewModel @Inject constructor(
             .compose(schedulerProvider.doOnIoObserveOnMainSingle())
             .subscribe({
                 liveDataCustomRandomJokeRetrieved.postValue(Unit)
-                //customRandomJokeRetrieved.onNext(Unit)
             }, { throwable ->
                 Timber.d(throwable)
-                error.onNext(R.string.custom_joke_retrieving_error_generic)
+                errorResource.value = R.string.custom_joke_retrieving_error_generic
             }).also { subscriptions.add(it) }
     }
 
