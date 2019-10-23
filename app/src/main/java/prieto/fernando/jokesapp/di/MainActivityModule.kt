@@ -3,7 +3,7 @@ package prieto.fernando.jokesapp.di
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import jokesapp.dashboard.DashboardViewModel
+import prieto.fernando.jokesapp.presentation.dashboard.DashboardViewModel
 import prieto.fernando.jokesapp.presentation.custom.CustomJokeViewModel
 import prieto.fernando.jokesapp.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.jokesapp.presentation.main.MainViewModel

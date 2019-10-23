@@ -62,18 +62,18 @@ class CustomJokeFragment : BaseFragment<CustomJokeViewModel>() {
             }.also { subscriptions.add(it) }
     }
 
+    override val viewModel: CustomJokeViewModel by lazy {
+        ViewModelProviders.of(this, vmFactory).get(CustomJokeViewModel::class.java).apply {
+            observe(doneButtonEnabled, ::changeDoneButtonState)
+            observe(liveDataCustomRandomJokeRetrieved, ::goBackToDashboard)
+        }
+    }
+
     private fun goBackToDashboard(unit: Unit?) {
         findNavController().popBackStack(R.id.dashboardFragment, false)
     }
 
     private fun changeDoneButtonState(enabled: Boolean?) {
         doneButton.isEnabled = enabled ?: false
-    }
-
-    override val viewModel: CustomJokeViewModel by lazy {
-        ViewModelProviders.of(this, vmFactory).get(CustomJokeViewModel::class.java).apply {
-            observe(doneButtonEnabled, ::changeDoneButtonState)
-            observe(liveDataCustomRandomJokeRetrieved, ::goBackToDashboard)
-        }
     }
 }

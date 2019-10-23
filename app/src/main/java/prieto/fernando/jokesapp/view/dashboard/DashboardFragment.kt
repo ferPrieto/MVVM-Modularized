@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import jokesapp.dashboard.DashboardViewModel
+import prieto.fernando.jokesapp.R
+import prieto.fernando.jokesapp.presentation.dashboard.DashboardViewModel
+import prieto.fernando.jokesapp.presentation.data.RandomJokeAndTitleResource
+import prieto.fernando.jokesapp.view.extension.observe
+import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_dashboard.button_custom_joke as buttonCustomJoke
 import kotlinx.android.synthetic.main.fragment_dashboard.button_multiple_jokes as buttonMultipleJoke
 import kotlinx.android.synthetic.main.fragment_dashboard.button_random_joke as buttonRandomJoke
-import prieto.fernando.jokesapp.R
-import prieto.fernando.ui.BaseFragment
 
 class DashboardFragment : BaseFragment<DashboardViewModel>() {
 
@@ -43,44 +45,41 @@ class DashboardFragment : BaseFragment<DashboardViewModel>() {
         viewModel.outputs.error()
             .subscribe {
             }.also { subscriptions.add(it) }
-
-        viewModel.outputs.randomJokeRetrieved()
-            .subscribe { randomJokeAndTitle ->
-                showDialog(
-                    randomJokeAndTitle.titleResource,
-                    randomJokeAndTitle.randomJokeUiModel.joke
-                )
-            }.also { subscriptions.add(it) }
-
-        viewModel.outputs.navigateToCustomJoke()
-            .subscribe {
-                navigateToCustomJokeFragment()
-            }.also { subscriptions.add(it) }
-
-        viewModel.outputs.navigateToInfiniteJokes()
-            .subscribe {
-                navigateToInfiniteJokesFragment()
-            }.also { subscriptions.add(it) }
-
-        viewModel.outputs.customRandomJokeRetrieved()
-            .subscribe { customRandomJoke ->
-                viewModel.inputs.resetCustomJokeCache()
-                showDialog(
-                    customRandomJoke.titleResource,
-                    customRandomJoke.randomJokeUiModel.joke
-                )
-            }.also { subscriptions.add(it) }
-    }
-
-    private fun navigateToCustomJokeFragment() {
-        findNavController().navigate(R.id.goToCustomJokeFragment)
-    }
-
-    private fun navigateToInfiniteJokesFragment() {
-        findNavController().navigate(R.id.goToInfiniteJokesFragment)
     }
 
     override val viewModel: DashboardViewModel by lazy {
-        ViewModelProviders.of(this, vmFactory).get(DashboardViewModel::class.java)
+        ViewModelProviders.of(this, vmFactory).get(DashboardViewModel::class.java).apply {
+            observe(navigateToCustomJoke, ::navigateToCustomJokeFragment)
+            observe(navigateToInfiniteJokes, ::navigateToInfiniteJokesFragment)
+            observe(customRandomJokeRetrieved, ::resetCacheAndShowDialog)
+            observe(randomJokeRetrieved, ::showRandomJokeDialog)
+        }
+    }
+
+    private fun navigateToCustomJokeFragment(unit: Unit?) {
+        findNavController().navigate(R.id.goToCustomJokeFragment)
+    }
+
+    private fun navigateToInfiniteJokesFragment(unit: Unit?) {
+        findNavController().navigate(R.id.goToInfiniteJokesFragment)
+    }
+
+    private fun resetCacheAndShowDialog(customRandomJoke: RandomJokeAndTitleResource?) {
+        customRandomJoke?.let {
+            viewModel.inputs.resetCustomJokeCache()
+            showDialog(
+                customRandomJoke.titleResource,
+                customRandomJoke.randomJokeUiModel.joke
+            )
+        }
+    }
+
+    private fun showRandomJokeDialog(randomJokeAndTitle: RandomJokeAndTitleResource?) {
+        randomJokeAndTitle?.let {
+            showDialog(
+                randomJokeAndTitle.titleResource,
+                randomJokeAndTitle.randomJokeUiModel.joke
+            )
+        }
     }
 }

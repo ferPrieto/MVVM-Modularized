@@ -4,7 +4,6 @@ import android.app.Application
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
-import jokesapp.dashboard.DashboardViewModel
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
