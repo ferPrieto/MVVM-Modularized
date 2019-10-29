@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_custom_joke.button_done as doneButton
-import kotlinx.android.synthetic.main.fragment_custom_joke.first_name_text as firstName
-import kotlinx.android.synthetic.main.fragment_custom_joke.last_name_text as lastName
 import prieto.fernando.jokesapp.R
 import prieto.fernando.jokesapp.presentation.custom.CustomJokeViewModel
 import prieto.fernando.jokesapp.presentation.custom.NamesData
+import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.ui.BaseFragment
+import kotlinx.android.synthetic.main.fragment_custom_joke.button_done as doneButton
+import kotlinx.android.synthetic.main.fragment_custom_joke.first_name_text as firstName
+import kotlinx.android.synthetic.main.fragment_custom_joke.last_name_text as lastName
 
 class CustomJokeFragment : BaseFragment<CustomJokeViewModel>() {
 
@@ -26,7 +27,6 @@ class CustomJokeFragment : BaseFragment<CustomJokeViewModel>() {
     override fun onResume() {
         super.onResume()
         setupInputListeners()
-        setupOutputListeners()
     }
 
     private val namesData: NamesData
@@ -55,23 +55,19 @@ class CustomJokeFragment : BaseFragment<CustomJokeViewModel>() {
         lastName.addTextChangedListener(formTextWatcher)
     }
 
-    private fun setupOutputListeners() {
-        viewModel.outputs.error()
-            .subscribe {
-            }.also { subscriptions.add(it) }
-
-        viewModel.outputs.doneButtonEnabled()
-            .subscribe { enabled ->
-                doneButton.isEnabled = enabled
-            }.also { subscriptions.add(it) }
-
-        viewModel.outputs.customRandomJokeRetrieved()
-            .subscribe {
-                findNavController().popBackStack(R.id.dashboardFragment, false)
-            }.also { subscriptions.add(it) }
+    override val viewModel: CustomJokeViewModel by lazy {
+        ViewModelProviders.of(this, vmFactory).get(CustomJokeViewModel::class.java).apply {
+            observe(doneButtonEnabled(), ::changeDoneButtonState)
+            observe(customRandomJokeRetrieved(), ::goBackToDashboard)
+            observe(errorResource(), ::showErrorToast)
+        }
     }
 
-    override val viewModel: CustomJokeViewModel by lazy {
-        ViewModelProviders.of(this, vmFactory).get(CustomJokeViewModel::class.java)
+    private fun goBackToDashboard(unit: Unit?) {
+        findNavController().popBackStack(R.id.dashboardFragment, false)
+    }
+
+    private fun changeDoneButtonState(enabled: Boolean?) {
+        doneButton.isEnabled = enabled ?: false
     }
 }

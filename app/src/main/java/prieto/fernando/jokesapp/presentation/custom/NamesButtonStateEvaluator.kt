@@ -29,6 +29,6 @@ class NamesButtonStateEvaluator @Inject constructor() {
     companion object {
         const val NAME_MAX_LENGTH = 25
         const val NAME_MIN_LENGTH = 3
-        val NAME_REGEX: Pattern = Pattern.compile("[a-zA-Z]+")
+        val NAME_REGEX: Pattern = Pattern.compile("[a-zA-Z ]+")
     }
 }

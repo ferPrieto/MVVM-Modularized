@@ -1,25 +1,18 @@
 package prieto.fernando.jokesapp.presentation.custom
 
 import android.app.Application
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.PublishSubject
-import javax.inject.Inject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import prieto.fernando.jokesapp.R
 import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.presentation.BaseViewModelInputs
-import prieto.fernando.presentation.BaseViewModelOutputs
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
 import timber.log.Timber
+import javax.inject.Inject
 
 interface CustomJokeViewModelInputs : BaseViewModelInputs {
     fun onNamesChanged(namesData: NamesData)
     fun customRandomJoke(firstName: String, lastName: String)
-}
-
-interface CustomJokeViewModelOutputs : BaseViewModelOutputs {
-    fun customRandomJokeRetrieved(): Observable<Unit>
-    fun doneButtonEnabled(): Observable<Boolean>
 }
 
 class CustomJokeViewModel @Inject constructor(
@@ -27,42 +20,37 @@ class CustomJokeViewModel @Inject constructor(
     private val customJokeUseCase: GetCustomRandomJokeUseCase,
     private val buttonStateEvaluator: NamesButtonStateEvaluator
 ) : BaseViewModel(application),
-    CustomJokeViewModelInputs,
-    CustomJokeViewModelOutputs {
+    CustomJokeViewModelInputs {
+
+    private val doneButtonEnabled = MutableLiveData<Boolean>()
+    private val customRandomJokeRetrieved = MutableLiveData<Unit>()
+    private val errorResource = MutableLiveData<Int>()
 
     override val inputs: CustomJokeViewModelInputs
         get() = this
 
-    override val outputs: CustomJokeViewModelOutputs
-        get() = this
+    fun doneButtonEnabled(): LiveData<Boolean> = doneButtonEnabled
 
-    private val customRandomJokeRetrieved = PublishSubject.create<Unit>()
-    private val doneButtonEnabled = BehaviorSubject.createDefault(false)
+    fun customRandomJokeRetrieved(): LiveData<Unit> = customRandomJokeRetrieved
+
+    fun errorResource(): LiveData<Int> = errorResource
 
     override fun customRandomJoke(firstName: String, lastName: String) {
         customJokeUseCase.execute(firstName, lastName)
             .compose(schedulerProvider.doOnIoObserveOnMainSingle())
             .subscribe({
-                customRandomJokeRetrieved.onNext(Unit)
+                customRandomJokeRetrieved.postValue(Unit)
             }, { throwable ->
                 Timber.d(throwable)
-                error.onNext(R.string.custom_joke_retrieving_error_generic)
+                errorResource.postValue(R.string.custom_joke_retrieving_error_generic)
             }).also { subscriptions.add(it) }
     }
 
     override fun onNamesChanged(namesData: NamesData) {
-        val buttonState = buttonStateEvaluator.shouldEnableButton(
+        val namesChanged = buttonStateEvaluator.shouldEnableButton(
             namesData.firstName,
             namesData.lastName
         )
-        doneButtonEnabled.onNext(buttonState)
-    }
-
-    override fun customRandomJokeRetrieved(): Observable<Unit> {
-        return customRandomJokeRetrieved.observeOn(schedulerProvider.ui()).hide()
-    }
-
-    override fun doneButtonEnabled(): Observable<Boolean> {
-        return doneButtonEnabled.observeOn(schedulerProvider.ui()).hide()
+        doneButtonEnabled.postValue(namesChanged)
     }
 }

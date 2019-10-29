@@ -10,9 +10,8 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
-
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -27,7 +26,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -55,7 +53,8 @@ dependencies {
     testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
     testImplementation "org.junit.platform:junit-platform-runner:1.0.2"
     testImplementation "commons-codec:commons-codec:1.12"
+    testImplementation "org.amshove.kluent:kluent:1.56"
 
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

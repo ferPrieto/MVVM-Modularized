@@ -1,9 +1,8 @@
 package prieto.fernando.jokesapp.presentation.infinite
 
 import android.app.Application
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
-import javax.inject.Inject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.jokesapp.R
 import prieto.fernando.jokesapp.presentation.data.RandomJokeUiModel
@@ -11,13 +10,10 @@ import prieto.fernando.jokesapp.presentation.mapper.RandomJokeDomainToUiModelMap
 import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
 import timber.log.Timber
+import javax.inject.Inject
 
 interface CustomJokeViewModelInputs : prieto.fernando.presentation.BaseViewModelInputs {
     fun multipleRandomJokes()
-}
-
-interface CustomJokeViewModelOutputs : prieto.fernando.presentation.BaseViewModelOutputs {
-    fun multipleRandomJokesRetrieved(): Observable<List<RandomJokeUiModel>>
 }
 
 private const val JOKES_REQUESTED = 12
@@ -27,26 +23,29 @@ class InfiniteJokesViewModel @Inject constructor(
     private val multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase,
     private val randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
 ) : BaseViewModel(application),
-    CustomJokeViewModelInputs,
-    CustomJokeViewModelOutputs {
+    CustomJokeViewModelInputs {
 
     override val inputs: CustomJokeViewModelInputs
         get() = this
 
-    override val outputs: CustomJokeViewModelOutputs
-        get() = this
+    private val multipleRandomJokesRetrieved: MutableLiveData<List<RandomJokeUiModel>> =
+        MutableLiveData()
+    private val errorResource: MutableLiveData<Int> = MutableLiveData()
 
-    private val multipleRandomJokesRetrieved = PublishSubject.create<List<RandomJokeUiModel>>()
+    fun multipleRandomJokesRetrieved(): LiveData<List<RandomJokeUiModel>> =
+        multipleRandomJokesRetrieved
+
+    fun errorResource(): LiveData<Int> = errorResource
 
     override fun multipleRandomJokes() {
         multipleRandomJokeUseCase.execute(JOKES_REQUESTED)
             .compose(schedulerProvider.doOnIoObserveOnMainSingle())
             .subscribe({ randomJokeDomainModels ->
                 val randomJokeUiModels = getRandomJokeUiModels(randomJokeDomainModels)
-                multipleRandomJokesRetrieved.onNext(randomJokeUiModels)
+                multipleRandomJokesRetrieved.value = randomJokeUiModels
             }, { throwable ->
                 Timber.d(throwable)
-                error.onNext(R.string.custom_joke_retrieving_error_generic)
+                errorResource.value = R.string.custom_joke_retrieving_error_generic
             }).also { subscriptions.add(it) }
     }
 
@@ -54,8 +53,4 @@ class InfiniteJokesViewModel @Inject constructor(
         randomJokeDomainModels.map { randomJokeDomainModel ->
             randomJokeDomainToUiModelMapper.toUi(randomJokeDomainModel)
         }
-
-    override fun multipleRandomJokesRetrieved(): Observable<List<RandomJokeUiModel>> {
-        return multipleRandomJokesRetrieved.observeOn(schedulerProvider.ui()).hide()
-    }
 }

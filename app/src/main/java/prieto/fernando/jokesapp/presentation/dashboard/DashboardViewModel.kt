@@ -1,20 +1,19 @@
-package jokesapp.dashboard
+package prieto.fernando.jokesapp.presentation.dashboard
 
 import android.app.Application
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
-import javax.inject.Inject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import prieto.fernando.jokesapp.R
 import prieto.fernando.jokesapp.presentation.data.RandomJokeAndTitleResource
 import prieto.fernando.jokesapp.presentation.mapper.RandomJokeDomainToUiModelMapper
 import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.presentation.BaseViewModelInputs
-import prieto.fernando.presentation.BaseViewModelOutputs
 import prieto.fernando.repository.CustomJokesException
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
 import prieto.fernando.usecase.GetRandomJokeUseCase
 import prieto.fernando.usecase.ResetCustomRandomJokeUseCase
 import timber.log.Timber
+import javax.inject.Inject
 
 interface DashboardViewModelInputs : BaseViewModelInputs {
     fun randomJoke()
@@ -24,13 +23,6 @@ interface DashboardViewModelInputs : BaseViewModelInputs {
     fun resetCustomJokeCache()
 }
 
-interface DashboardViewModelOutputs : BaseViewModelOutputs {
-    fun randomJokeRetrieved(): Observable<RandomJokeAndTitleResource>
-    fun navigateToCustomJoke(): Observable<Unit>
-    fun customRandomJokeRetrieved(): Observable<RandomJokeAndTitleResource>
-    fun navigateToInfiniteJokes(): Observable<Unit>
-}
-
 class DashboardViewModel @Inject constructor(
     application: Application,
     private val customRandomJokeUseCase: GetCustomRandomJokeUseCase,
@@ -38,19 +30,29 @@ class DashboardViewModel @Inject constructor(
     private val resetCustomRandomJokeUseCase: ResetCustomRandomJokeUseCase,
     private val randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
 ) : BaseViewModel(application),
-    DashboardViewModelInputs,
-    DashboardViewModelOutputs {
+    DashboardViewModelInputs {
+
+    private val navigateToCustomJoke: MutableLiveData<Unit> = MutableLiveData()
+    private val navigateToInfiniteJokes: MutableLiveData<Unit> = MutableLiveData()
+    private val randomJokeRetrieved: MutableLiveData<RandomJokeAndTitleResource> = MutableLiveData()
+    private val customRandomJokeRetrieved: MutableLiveData<RandomJokeAndTitleResource> =
+        MutableLiveData()
+    private val errorResource: MutableLiveData<Int> = MutableLiveData()
 
     override val inputs: DashboardViewModelInputs
         get() = this
 
-    override val outputs: DashboardViewModelOutputs
-        get() = this
+    fun navigateToCustomJoke(): LiveData<Unit> = navigateToCustomJoke
 
-    private val customRandomJokeRetrieved = PublishSubject.create<RandomJokeAndTitleResource>()
-    private val randomJokeRetrieved = PublishSubject.create<RandomJokeAndTitleResource>()
-    private val navigateToCustomJoke = PublishSubject.create<Unit>()
-    private val multipleJokesClicked = PublishSubject.create<Unit>()
+    fun navigateToInfiniteJokes(): LiveData<Unit> = navigateToInfiniteJokes
+
+    fun randomJokeRetrieved(): LiveData<RandomJokeAndTitleResource> = randomJokeRetrieved
+
+    fun customRandomJokeRetrieved(): LiveData<RandomJokeAndTitleResource> =
+        customRandomJokeRetrieved
+
+    fun errorResource(): LiveData<Int> = errorResource
+
 
     override fun randomJoke() {
         randomJokeUseCase.execute()
@@ -62,11 +64,10 @@ class DashboardViewModel @Inject constructor(
                         randomJokeUiModel,
                         R.string.dashboard_dialog_title
                     )
-
-                randomJokeRetrieved.onNext(randomJokeAndTitleResource)
+                randomJokeRetrieved.postValue(randomJokeAndTitleResource)
             }, { throwable ->
                 Timber.d(throwable)
-                error.onNext(R.string.random_joke_retrieving_error_generic)
+                errorResource.value = R.string.random_joke_retrieving_error_generic
             }).also { subscriptions.add(it) }
     }
 
@@ -80,11 +81,11 @@ class DashboardViewModel @Inject constructor(
     }
 
     override fun onCustomRandomJokeClicked() {
-        navigateToCustomJoke.onNext(Unit)
+        navigateToCustomJoke.postValue(Unit)
     }
 
     override fun onMultipleJokesClicked() {
-        multipleJokesClicked.onNext(Unit)
+        navigateToInfiniteJokes.postValue(Unit)
     }
 
     @Throws(CustomJokesException::class)
@@ -98,25 +99,9 @@ class DashboardViewModel @Inject constructor(
                         randomJokeUiModel,
                         R.string.custom_joke_dialog_title
                     )
-                customRandomJokeRetrieved.onNext(randomJokeAndTitleResource)
+                customRandomJokeRetrieved.postValue(randomJokeAndTitleResource)
             }, { throwable ->
                 Timber.d(throwable)
             }).also { subscriptions.add(it) }
-    }
-
-    override fun randomJokeRetrieved(): Observable<RandomJokeAndTitleResource> {
-        return randomJokeRetrieved.observeOn(schedulerProvider.ui()).hide()
-    }
-
-    override fun navigateToCustomJoke(): Observable<Unit> {
-        return navigateToCustomJoke.observeOn(schedulerProvider.ui()).hide()
-    }
-
-    override fun customRandomJokeRetrieved(): Observable<RandomJokeAndTitleResource> {
-        return customRandomJokeRetrieved.observeOn(schedulerProvider.ui()).hide()
-    }
-
-    override fun navigateToInfiniteJokes(): Observable<Unit> {
-        return multipleJokesClicked.observeOn(schedulerProvider.ui()).hide()
     }
 }

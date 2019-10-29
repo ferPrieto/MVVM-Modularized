@@ -1,13 +1,20 @@
 package prieto.fernando.jokesapp.presentation.dashboard
 
 import android.app.Application
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.times
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
-import jokesapp.dashboard.DashboardViewModel
+import junit.framework.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.data.RandomJokeDomainModel
@@ -39,10 +46,14 @@ class DashboardViewModelTest {
     @Mock
     lateinit var randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
 
-    private lateinit var randomJokeRetrievedTestObserver: TestObserver<RandomJokeAndTitleResource>
-    private lateinit var navigateToCustomJokeTestObserver: TestObserver<Unit>
-    private lateinit var multipleJokesClickedTestObserver: TestObserver<Unit>
-    private lateinit var customRandomJokeRetrievedTestObserver: TestObserver<RandomJokeAndTitleResource>
+    @get:Rule
+    var rule: TestRule = InstantTaskExecutorRule()
+
+    private lateinit var navigateToCustomJokeTestObserver: Observer<Unit>
+    private lateinit var navigateToInfiniteJokesTestObserver: Observer<Unit>
+    private lateinit var randomJokeRetrievedTestObserver: Observer<RandomJokeAndTitleResource>
+    private lateinit var customRandomJokeRetrievedTestObserver: Observer<RandomJokeAndTitleResource>
+    private lateinit var errorResourceTestObserver: Observer<Int>
 
     @Before
     fun setUp() {
@@ -54,14 +65,21 @@ class DashboardViewModelTest {
             randomJokeDomainToUiModelMapper
         )
         setupViewModelForTests(cut)
-        randomJokeRetrievedTestObserver = cut.outputs.randomJokeRetrieved().test()
-        navigateToCustomJokeTestObserver = cut.outputs.navigateToCustomJoke().test()
-        multipleJokesClickedTestObserver = cut.outputs.navigateToInfiniteJokes().test()
-        customRandomJokeRetrievedTestObserver = cut.outputs.customRandomJokeRetrieved().test()
+
+        navigateToCustomJokeTestObserver = mock()
+        navigateToInfiniteJokesTestObserver = mock()
+        randomJokeRetrievedTestObserver = mock()
+        customRandomJokeRetrievedTestObserver = mock()
+        errorResourceTestObserver = mock()
+        cut.navigateToCustomJoke().observeForever(navigateToCustomJokeTestObserver)
+        cut.navigateToInfiniteJokes().observeForever(navigateToInfiniteJokesTestObserver)
+        cut.randomJokeRetrieved().observeForever(randomJokeRetrievedTestObserver)
+        cut.customRandomJokeRetrieved().observeForever(customRandomJokeRetrievedTestObserver)
+        cut.errorResource().observeForever(errorResourceTestObserver)
     }
 
     @Test
-    fun `When randomJoke then randomJokeRetrieved invoked`() {
+    fun `When randomJoke then randomJokeRetrieved invoked with expected result`() {
         // Given
         val randomJokeDomainModel = RandomJokeDomainModel(
             "some Id",
@@ -77,20 +95,22 @@ class DashboardViewModelTest {
             randomJokeUiModel
         )
         val stringResource = R.string.dashboard_dialog_title
-        val randomJokeAndTitleResource = RandomJokeAndTitleResource(
+        val expected = RandomJokeAndTitleResource(
             randomJokeUiModel,
             stringResource
         )
         whenever(randomJokeUseCase.execute()).thenReturn(
             Single.just(randomJokeDomainModel)
         )
-
         // When
         cut.randomJoke()
 
         // Then
-        randomJokeRetrievedTestObserver.assertValue(randomJokeAndTitleResource)
-            .assertNoErrors()
+        val captor = ArgumentCaptor.forClass(RandomJokeAndTitleResource::class.java)
+        captor.run {
+            verify(randomJokeRetrievedTestObserver, times(1)).onChanged(capture())
+            assertEquals(expected, value)
+        }
     }
 
     @Test
@@ -99,8 +119,10 @@ class DashboardViewModelTest {
         cut.onCustomRandomJokeClicked()
 
         // Then
-        navigateToCustomJokeTestObserver.assertValue(Unit)
-            .assertNoErrors()
+        val captor = ArgumentCaptor.forClass(Unit::class.java)
+        captor.run {
+            verify(navigateToCustomJokeTestObserver, times(1)).onChanged(capture())
+        }
     }
 
     @Test
@@ -109,12 +131,14 @@ class DashboardViewModelTest {
         cut.onMultipleJokesClicked()
 
         // Then
-        multipleJokesClickedTestObserver.assertValue(Unit)
-            .assertNoErrors()
+        val captor = ArgumentCaptor.forClass(Unit::class.java)
+        captor.run {
+            verify(navigateToInfiniteJokesTestObserver, times(1)).onChanged(capture())
+        }
     }
 
     @Test
-    fun `When customRandomJokeForDialog then customRandomJokeRetrieved invoked`() {
+    fun `When customRandomJokeForDialog then customRandomJokeRetrieved invoked with expected result`() {
         // Given
         val randomJokeDomainModel = RandomJokeDomainModel(
             "some Id",
@@ -130,7 +154,7 @@ class DashboardViewModelTest {
             randomJokeUiModel
         )
         val stringResource = R.string.custom_joke_dialog_title
-        val randomJokeAndTitleResource = RandomJokeAndTitleResource(
+        val expected = RandomJokeAndTitleResource(
             randomJokeUiModel,
             stringResource
         )
@@ -142,8 +166,10 @@ class DashboardViewModelTest {
         cut.customRandomJokeForDialog()
 
         // Then
-        customRandomJokeRetrievedTestObserver.assertValue(randomJokeAndTitleResource)
-            .assertNoErrors()
-
+        val captor = ArgumentCaptor.forClass(RandomJokeAndTitleResource::class.java)
+        captor.run {
+            verify(customRandomJokeRetrievedTestObserver, times(1)).onChanged(capture())
+            assertEquals(expected, value)
+        }
     }
 }

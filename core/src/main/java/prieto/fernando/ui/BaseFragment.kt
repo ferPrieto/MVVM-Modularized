@@ -2,6 +2,7 @@ package prieto.fernando.ui
 
 import android.app.AlertDialog
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
@@ -27,7 +28,7 @@ abstract class BaseFragment<T : BaseViewModel> : DaggerFragment(), BaseView<T> {
 
     protected val subscriptions = CompositeDisposable()
 
-    fun showDialog(titleResource: Int, jokeContent: String) {
+    protected fun showDialog(titleResource: Int, jokeContent: String) {
         AlertDialog.Builder(context)
             .setTitle(titleResource)
             .setMessage(jokeContent)
@@ -36,6 +37,13 @@ abstract class BaseFragment<T : BaseViewModel> : DaggerFragment(), BaseView<T> {
             }
             .setCancelable(true)
             .show()
+    }
+
+    protected fun showErrorToast(errorResource: Int?) {
+        errorResource?.let {
+            val errorMessage = resources.getString(errorResource)
+            Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT)
+        }
     }
 
     protected fun bindClickAction(view: View, clickAction: () -> Unit) {

@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
 import prieto.fernando.jokesapp.R
+import prieto.fernando.jokesapp.presentation.data.RandomJokeUiModel
 import prieto.fernando.jokesapp.presentation.infinite.InfiniteJokesViewModel
+import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
 import prieto.fernando.jokesapp.view.infinite.widget.EndlessRecyclerViewScrollListener
 import prieto.fernando.ui.BaseFragment
+import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
 
 class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
 
@@ -45,29 +47,22 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
 
     override fun onResume() {
         super.onResume()
-        setupInputListeners()
-        setupOutputListeners()
         viewModel.inputs.multipleRandomJokes()
     }
 
-    private fun setupInputListeners() {
-    }
-
-    private fun setupOutputListeners() {
-        viewModel.outputs.error()
-            .subscribe {
-            }.also { subscriptions.add(it) }
-
-        viewModel.outputs.multipleRandomJokesRetrieved()
-            .subscribe { randomJokes ->
-                jokesAdapter?.let { adapter ->
-                    adapter.setData(randomJokes)
-                    infiniteRecyclerView.adapter = adapter
-                }
-            }.also { subscriptions.add(it) }
-    }
-
     override val viewModel: InfiniteJokesViewModel by lazy {
-        ViewModelProviders.of(this, vmFactory).get(InfiniteJokesViewModel::class.java)
+        ViewModelProviders.of(this, vmFactory).get(InfiniteJokesViewModel::class.java).apply {
+            observe(multipleRandomJokesRetrieved(), ::addJokesToAdapter)
+            observe(errorResource(), ::showErrorToast)
+        }
+    }
+
+    private fun addJokesToAdapter(randomJokes: List<RandomJokeUiModel>?) {
+        randomJokes?.let {
+            jokesAdapter?.let { adapter ->
+                adapter.setData(randomJokes)
+                infiniteRecyclerView.adapter = adapter
+            }
+        }
     }
 }

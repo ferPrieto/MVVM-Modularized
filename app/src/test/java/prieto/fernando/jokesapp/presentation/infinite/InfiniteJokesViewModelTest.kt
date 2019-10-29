@@ -1,12 +1,17 @@
 package prieto.fernando.jokesapp.presentation.infinite
 
 import android.app.Application
-import com.nhaarman.mockito_kotlin.whenever
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
+import junit.framework.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.data.RandomJokeDomainModel
@@ -28,7 +33,10 @@ class InfiniteJokesViewModelTest {
     @Mock
     lateinit var randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
 
-    private lateinit var multipleRandomJokesRetrievedTestObserver: TestObserver<List<RandomJokeUiModel>>
+    @get:Rule
+    var rule: TestRule = InstantTaskExecutorRule()
+
+    private lateinit var multipleRandomJokesRetrievedTestObserver: Observer<List<RandomJokeUiModel>>
 
     @Before
     fun setUp() {
@@ -38,7 +46,9 @@ class InfiniteJokesViewModelTest {
             randomJokeDomainToUiModelMapper
         )
         setupViewModelForTests(cut)
-        multipleRandomJokesRetrievedTestObserver = cut.outputs.multipleRandomJokesRetrieved().test()
+
+        multipleRandomJokesRetrievedTestObserver = mock()
+        cut.multipleRandomJokesRetrieved().observeForever(multipleRandomJokesRetrievedTestObserver)
     }
 
     @Test
@@ -65,7 +75,10 @@ class InfiniteJokesViewModelTest {
         cut.multipleRandomJokes()
 
         // Then
-        multipleRandomJokesRetrievedTestObserver.assertValue(randomJokeUiModelList)
-            .assertNoErrors()
+        val captor = ArgumentCaptor.forClass(RandomJokeUiModel::class.java)
+        captor.run {
+            verify(multipleRandomJokesRetrievedTestObserver, times(1)).onChanged(listOf(capture()))
+            assertEquals(randomJokeUiModelList, value)
+        }
     }
 }

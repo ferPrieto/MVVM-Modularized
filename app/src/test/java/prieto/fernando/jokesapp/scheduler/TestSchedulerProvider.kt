@@ -1,4 +1,4 @@
-package prieto.fernando.mytaxiapp.scheduler
+package prieto.fernando.jokesapp.scheduler
 
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
