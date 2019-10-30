@@ -22,16 +22,16 @@ The initial Clean Architecture approach was developed by me in a Bitbucket repos
 ### Goals
 
 In order to follow the latest Android standards, the project will include the next points (progressively):
-- ~~Complete the VM unit tests~~
-- ~~LiveData, instead of Rx (outputs)~~
+- ~~Complete the VM unit tests~~ (DONE)
+- ~~LiveData, instead of Rx (outputs)~~ (DONE)
 - UI Tests
 - MockWebServer for testing HTTP clients.
 - Finding out a better approach for the local Source in order to test it properly
 
 ## Libraries Used
 
-* [Rx][0] for reactive style programming.
-* [Navigation][1] for in-app navigation. 
+* [Rx][0] for reactive style programming (from VM to Data).
+* [LiveData][1] for reactive style programming (from VM to UI). 
 * [Navigation][2] for in-app navigation. 
 * [Rx][3] for cache storage.
 * [Dagger][4] for dependency injection.
