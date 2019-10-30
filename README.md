@@ -22,8 +22,8 @@ The initial Clean Architecture approach was developed by me in a Bitbucket repos
 ### Goals
 
 In order to follow the latest Android standards, the project will include the next points (progressively):
-- Complete the VM unit tests
-- LiveData, instead of Rx (outputs)
+- ~~Complete the VM unit tests~~
+- ~~LiveData, instead of Rx (outputs)~~
 - UI Tests
 - MockWebServer for testing HTTP clients.
 - Finding out a better approach for the local Source in order to test it properly
@@ -32,21 +32,23 @@ In order to follow the latest Android standards, the project will include the ne
 
 * [Rx][0] for reactive style programming.
 * [Navigation][1] for in-app navigation. 
-* [Rx][2] for cache storage.
-* [Dagger][3] for dependency injection.
-* [Retrofit][4] for REST api communication.  
-* [Timber][5] for logging.
-* [Espresso][6] for UI tests.
-* [Mockito-Kotlin][7] for mocking in tests.
+* [Navigation][2] for in-app navigation. 
+* [Rx][3] for cache storage.
+* [Dagger][4] for dependency injection.
+* [Retrofit][5] for REST api communication.  
+* [Timber][6] for logging.
+* [Espresso][7] for UI tests.
+* [Mockito-Kotlin][8] for mocking in tests.
 
 [0]: https://github.com/ReactiveX/RxAndroid
-[1]: https://developer.android.com/topic/libraries/architecture/navigation/
-[2]: https://github.com/ReactiveX/RxAndroid
-[3]: https://github.com/google/dagger
-[4]: https://github.com/square/retrofit 
-[5]: https://github.com/JakeWharton/timber
-[6]: https://developer.android.com/training/testing/espresso/
-[7]: https://github.com/nhaarman/mockito-kotlin 
+[1]: https://developer.android.com/topic/libraries/architecture/livedata
+[2]: https://developer.android.com/topic/libraries/architecture/navigation/
+[3]: https://github.com/ReactiveX/RxAndroid
+[4]: https://github.com/google/dagger
+[5]: https://github.com/square/retrofit 
+[6]: https://github.com/JakeWharton/timber
+[7]: https://developer.android.com/training/testing/espresso/
+[8]: https://github.com/nhaarman/mockito-kotlin 
 
 
 ## Demo
