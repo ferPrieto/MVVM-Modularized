@@ -1,12 +1,14 @@
 apply from: "$rootDir/base-android-library.gradle"
 
 dependencies {
-    // Architecture
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.1.0"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
-    kapt "androidx.lifecycle:lifecycle-compiler:2.1.0"
+    def applicationDependencies = rootProject.ext.mainApplication
 
-    // Navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
-    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
+    // Compile time dependencies
+    kapt applicationDependencies.lifecycleCompiler
+
+    // Application dependencies
+    implementation applicationDependencies.archViewModel
+    implementation applicationDependencies.archComponents
+    implementation applicationDependencies.archNavigationFragment
+    implementation applicationDependencies.archNavigationUi
 }
