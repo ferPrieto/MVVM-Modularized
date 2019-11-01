@@ -7,16 +7,18 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    def config = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion config["compile_sdk"]
+    buildToolsVersion config["build_version"]
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config["min_sdk"]
+        targetSdkVersion config["target_sdk"]
+        versionCode config["version_code"]
+        versionName config["version_name"]
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner config["test_runner"]
         consumerProguardFiles 'consumer-rules.pro'
     }
 
@@ -29,32 +31,32 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    def applicationDependencies = rootProject.ext.mainApplication
+    def unitTestDependencies = rootProject.ext.unitTesting
 
-    // Dagger
-    implementation "com.google.dagger:dagger-android:2.16"
-    implementation "com.google.dagger:dagger-android-support:2.16"
-    kapt "com.google.dagger:dagger-compiler:2.16"
-    kapt "com.google.dagger:dagger-android-processor:2.16"
+    // Application dependencies
+    implementation applicationDependencies.kotlin
+    implementation applicationDependencies.appCompat
+    implementation applicationDependencies.coreKtx
 
-    // Rx
-    implementation "io.reactivex.rxjava2:rxjava:2.2.7"
-    implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:2.2.0"
+    // Compile time dependencies
+    kapt applicationDependencies.daggerCompiler
+    kapt applicationDependencies.daggerAndroidProcessor
 
-    // Testing
-    testImplementation 'junit:junit:4.12'
-    testImplementation "org.mockito:mockito-core:2.27.0"
-    testImplementation "org.mockito:mockito-inline:2.27.0"
-    testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
-    testImplementation "org.junit.platform:junit-platform-runner:1.0.2"
-    testImplementation "commons-codec:commons-codec:1.12"
-    testImplementation "org.amshove.kluent:kluent:1.56"
+    // Application dependencies
+    implementation applicationDependencies.daggerAndroid
+    implementation applicationDependencies.daggerAndroidSupport
+    implementation applicationDependencies.rxJava
+    implementation applicationDependencies.rxKotlin
+    implementation applicationDependencies.rxAndroid
+    implementation applicationDependencies.rxBinding
 
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // Unit/Integration tests dependencies
+    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.mockitoCore
+    testImplementation unitTestDependencies.mockitoInline
+    testImplementation unitTestDependencies.mockitoKotlin
+    testImplementation unitTestDependencies.junitPlatformRunner
+    testImplementation unitTestDependencies.commonsCodec
+    testImplementation unitTestDependencies.coreTesting
 }
