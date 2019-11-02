@@ -3,14 +3,15 @@ package prieto.fernando.jokesapp.di
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import prieto.fernando.jokesapp.presentation.dashboard.DashboardViewModel
-import prieto.fernando.jokesapp.presentation.custom.CustomJokeViewModel
-import prieto.fernando.jokesapp.presentation.infinite.InfiniteJokesViewModel
-import prieto.fernando.jokesapp.presentation.main.MainViewModel
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.view.custom.CustomJokeFragment
 import prieto.fernando.jokesapp.view.dashboard.DashboardFragment
 import prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment
+import prieto.fernando.presentation.ViewModelProviderFactory
+import prieto.fernando.presentation.custom.CustomJokeViewModel
+import prieto.fernando.presentation.dashboard.DashboardViewModel
+import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
+import prieto.fernando.presentation.main.MainViewModel
 
 @Module
 internal abstract class MainActivityModule {
@@ -31,26 +32,26 @@ internal abstract class MainActivityModule {
     companion object {
         @Provides
         @JvmStatic
-        internal fun provideMainViewModelFactory(viewModel: MainViewModel): prieto.fernando.presentation.ViewModelProviderFactory<MainViewModel> {
-            return prieto.fernando.presentation.ViewModelProviderFactory(viewModel)
+        internal fun provideMainViewModelFactory(viewModel: MainViewModel): ViewModelProviderFactory<MainViewModel> {
+            return ViewModelProviderFactory(viewModel)
         }
 
         @Provides
         @JvmStatic
-        internal fun provideDashboardViewModelFactory(dashboardViewModel: DashboardViewModel): prieto.fernando.presentation.ViewModelProviderFactory<DashboardViewModel> {
-            return prieto.fernando.presentation.ViewModelProviderFactory(dashboardViewModel)
+        internal fun provideDashboardViewModelFactory(dashboardViewModel: DashboardViewModel): ViewModelProviderFactory<DashboardViewModel> {
+            return ViewModelProviderFactory(dashboardViewModel)
         }
 
         @Provides
         @JvmStatic
-        internal fun provideCustomJokeViewModelFactory(customJokeViewModel: CustomJokeViewModel): prieto.fernando.presentation.ViewModelProviderFactory<CustomJokeViewModel> {
-            return prieto.fernando.presentation.ViewModelProviderFactory(customJokeViewModel)
+        internal fun provideCustomJokeViewModelFactory(customJokeViewModel: CustomJokeViewModel): ViewModelProviderFactory<CustomJokeViewModel> {
+            return ViewModelProviderFactory(customJokeViewModel)
         }
 
         @Provides
         @JvmStatic
-        internal fun provideInfiniteJokesViewModelFactory(infiniteJokesViewModel: InfiniteJokesViewModel): prieto.fernando.presentation.ViewModelProviderFactory<InfiniteJokesViewModel> {
-            return prieto.fernando.presentation.ViewModelProviderFactory(infiniteJokesViewModel)
+        internal fun provideInfiniteJokesViewModelFactory(infiniteJokesViewModel: InfiniteJokesViewModel): ViewModelProviderFactory<InfiniteJokesViewModel> {
+            return ViewModelProviderFactory(infiniteJokesViewModel)
         }
     }
 }

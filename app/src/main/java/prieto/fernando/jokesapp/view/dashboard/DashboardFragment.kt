@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import prieto.fernando.jokesapp.R
-import prieto.fernando.jokesapp.presentation.dashboard.DashboardViewModel
-import prieto.fernando.jokesapp.presentation.data.RandomJokeAndTitleResource
+import prieto.fernando.presentation.dashboard.DashboardViewModel
+import prieto.fernando.presentation.data.RandomJokeAndTitleResource
 import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_dashboard.button_custom_joke as buttonCustomJoke
