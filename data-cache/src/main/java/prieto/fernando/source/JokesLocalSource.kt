@@ -1,6 +1,5 @@
 package prieto.fernando.source
 
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
 import prieto.fernando.model.RandomJokeLocalModel

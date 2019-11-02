@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import prieto.fernando.jokesapp.R
-import prieto.fernando.jokesapp.presentation.data.RandomJokeUiModel
-import prieto.fernando.jokesapp.presentation.infinite.InfiniteJokesViewModel
+import prieto.fernando.presentation.RandomJokeUiModel
+import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
 import prieto.fernando.jokesapp.view.infinite.widget.EndlessRecyclerViewScrollListener

@@ -1,21 +1,13 @@
 <resources>
     <string name="app_name">JokesApp</string>
-    <string name="random_joke_retrieving_error_generic">There was an error when a joke was being retrieved</string>
-    <string name="custom_joke_retrieving_error_generic">There was an error when a custom joke was being retrieved</string>
-    <string name="multiple_jokes_retrieving_error_generic">There was an error when the jokes were being retrieved</string>
 
     <!-- DASHBOARD -->
-    <string name="dashboard_dialog_title">Random Joke</string>
     <string name="dashboard_button_random_joke">RANDOM JOKE</string>
     <string name="dashboard_button_custom_joke">CUSTOM JOKE</string>
     <string name="dashboard_button_infinite_jokes">INFINITE JOKES</string>
 
     <!-- CUSTOM JOKE -->
-    <string name="custom_joke_dialog_title">Custom Joke</string>
     <string name="custom_joke_first_name_hint">First Name</string>
     <string name="custom_joke_last_name_hint">Last Name</string>
-    <string name="custom_joke_first_name_error">Please enter a valid first name</string>
-    <string name="custom_joke_last_name_error">Please enter a valid last name</string>
     <string name="custom_joke_button_done">DONE</string>
-
 </resources>

@@ -1,0 +1,10 @@
+apply from: "$rootDir/base-android-library.gradle"
+
+dependencies{
+    def applicationDependencies = rootProject.ext.mainApplication
+
+    implementation project(':domain')
+    implementation project(':core')
+
+    implementation applicationDependencies.timber
+}

@@ -7,8 +7,8 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import di.RepositoryModule
-import javax.inject.Singleton
 import prieto.fernando.di.ChuckNorrisApiModule
+import javax.inject.Singleton
 import prieto.fernando.di.NetworkModule
 import prieto.fernando.jokesapp.JokesApp
 

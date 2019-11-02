@@ -22,6 +22,11 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
     }
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -40,7 +45,7 @@ dependencies {
     implementation applicationDependencies.coreKtx
 
     // Compile time dependencies
-    kapt applicationDependencies.daggerCompiler
+    annotationProcessor applicationDependencies.daggerCompiler
     kapt applicationDependencies.daggerAndroidProcessor
 
     // Application dependencies

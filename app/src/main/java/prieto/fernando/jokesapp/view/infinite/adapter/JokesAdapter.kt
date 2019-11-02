@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_joke.view.*
 import prieto.fernando.jokesapp.R
-import prieto.fernando.jokesapp.presentation.data.RandomJokeUiModel
+import prieto.fernando.presentation.RandomJokeUiModel
 
 interface BindableAdapter<T> {
     fun setData(data: T)

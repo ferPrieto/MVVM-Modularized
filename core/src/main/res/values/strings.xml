@@ -3,4 +3,18 @@
 
     <!-- DASHBOARD -->
     <string name="dashboard_dialog_dismiss_button">DISMISS</string>
+    <string name="dashboard_dialog_title">Random Joke</string>
+    <string name="custom_joke_first_name_error">Please enter a valid first name</string>
+    <string name="custom_joke_last_name_error">Please enter a valid last name</string>
+
+    <!-- RANDOM -->
+    <string name="random_joke_retrieving_error_generic">There was an error when a joke was being retrieved</string>
+
+    <!-- CUSTOM -->
+    <string name="custom_joke_retrieving_error_generic">There was an error when a custom joke was being retrieved</string>
+    <string name="custom_joke_dialog_title">Custom Joke</string>
+
+    <!-- INFINITE -->
+    <string name="multiple_jokes_retrieving_error_generic">There was an error when the jokes were being retrieved</string>
+
 </resources>

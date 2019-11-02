@@ -69,11 +69,12 @@ dependencies {
     implementation project(':data-jokesapi')
     implementation project(':data-cache')
     implementation project(':domain')
+    implementation project(':presentation')
 
     // Compile time dependencies
-    annotationProcessor applicationDependencies.lifecycleCompiler
-    annotationProcessor applicationDependencies.daggerCompiler
-    annotationProcessor applicationDependencies.daggerAndroidProcessor
+    kapt applicationDependencies.lifecycleCompiler
+    kapt applicationDependencies.daggerCompiler
+    kapt applicationDependencies.daggerAndroidProcessor
 
     // Application dependencies
     implementation applicationDependencies.kotlin

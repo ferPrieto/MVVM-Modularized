@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import prieto.fernando.jokesapp.R
-import prieto.fernando.jokesapp.presentation.main.MainViewModel
-import prieto.fernando.ui.BaseActivity
+import prieto.fernando.presentation.main.MainViewModel
 
 class MainActivity : prieto.fernando.ui.BaseActivity<MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {

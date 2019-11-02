@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import prieto.fernando.jokesapp.R
-import prieto.fernando.jokesapp.presentation.custom.CustomJokeViewModel
-import prieto.fernando.jokesapp.presentation.custom.NamesData
+import prieto.fernando.presentation.custom.CustomJokeViewModel
+import prieto.fernando.presentation.custom.model.NamesData
 import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_custom_joke.button_done as doneButton
