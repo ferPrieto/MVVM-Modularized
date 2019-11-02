@@ -37,6 +37,9 @@ ext {
   rxandroid_version= '2.1.1'
   rxbinding_version= '2.2.0'
 
+  // Build Android and Dagger with JDK9+
+  jdk9_builder_version = '1.0'
+
   // Loggin
   timber_version = '4.7.1'
 
@@ -78,7 +81,8 @@ ext {
       rxKotlin:                   "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version",
       rxAndroid:                  "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
       rxBinding:                  "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rxbinding_version",
-      timber:                     "com.jakewharton.timber:timber:$timber_version"
+      timber:                     "com.jakewharton.timber:timber:$timber_version",
+      jdk9Builder:                "com.github.pengrad:jdk9-deps:$jdk9_builder_version"
   ]
 
   unitTesting = [

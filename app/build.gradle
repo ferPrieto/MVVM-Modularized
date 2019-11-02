@@ -71,8 +71,10 @@ dependencies {
     implementation project(':domain')
     implementation project(':presentation')
 
+    compileOnly applicationDependencies.jdk9Builder
+
     // Compile time dependencies
-    kapt applicationDependencies.lifecycleCompiler
+    annotationProcessor applicationDependencies.lifecycleCompiler
     kapt applicationDependencies.daggerCompiler
     kapt applicationDependencies.daggerAndroidProcessor
 

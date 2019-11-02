@@ -45,7 +45,7 @@ dependencies {
     implementation applicationDependencies.coreKtx
 
     // Compile time dependencies
-    annotationProcessor applicationDependencies.daggerCompiler
+    kapt applicationDependencies.daggerCompiler
     kapt applicationDependencies.daggerAndroidProcessor
 
     // Application dependencies

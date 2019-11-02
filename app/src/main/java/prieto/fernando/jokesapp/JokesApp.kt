@@ -2,6 +2,7 @@ package prieto.fernando.jokesapp
 
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import prieto.fernando.jokesapp.di.DaggerAppComponent
 
 class JokesApp : DaggerApplication() {
 
