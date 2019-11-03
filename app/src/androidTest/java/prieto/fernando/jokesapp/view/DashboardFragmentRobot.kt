@@ -29,9 +29,13 @@ class DashboardFragmentRobot {
             .check(matches(isDisplayed()))
     }
 
+    fun clickDismissButtonDialog() = apply {
+        onView(dialogButtonViewMatcher).perform(click())
+    }
 
     companion object {
         private val buttonRandomJokeMatcher = withId(R.id.button_random_joke)
         private val dialogTitleViewMatcher = withText("Random Joke")
+        private val dialogButtonViewMatcher = withText("DISMISS")
     }
 }
