@@ -1,4 +1,4 @@
-package prieto.fernando.jokesapp.view
+package prieto.fernando.jokesapp.dashboard
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
@@ -10,10 +10,6 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import prieto.fernando.jokesapp.R
 
 class DashboardFragmentRobot {
-
-    fun waitForCondition(idlingResource: IdlingResource?) = apply {
-        IdlingRegistry.getInstance().register(idlingResource)
-    }
 
     fun assertButtonRandomJokeDisplayed() = apply {
         onView(buttonRandomJokeMatcher).check(matches(isDisplayed()))
@@ -33,9 +29,27 @@ class DashboardFragmentRobot {
         onView(dialogButtonViewMatcher).perform(click())
     }
 
+    fun assertButtonCustomJokeDisplayed() = apply {
+        onView(buttonCustomJokeMatcher).check(matches(isDisplayed()))
+    }
+
+    fun clickButtonCustomJoke() = apply {
+        onView(buttonCustomJokeMatcher).perform(click())
+    }
+
+    fun assertButtonInfiniteJokesDisplayed() = apply {
+        onView(buttonInfiniteJokesMatcher).check(matches(isDisplayed()))
+    }
+
+    fun clickButtonInfiniteJokes() = apply {
+        onView(buttonInfiniteJokesMatcher).perform(click())
+    }
+
     companion object {
         private val buttonRandomJokeMatcher = withId(R.id.button_random_joke)
         private val dialogTitleViewMatcher = withText("Random Joke")
         private val dialogButtonViewMatcher = withText("DISMISS")
+        private val buttonCustomJokeMatcher = withId(R.id.button_custom_joke)
+        private val buttonInfiniteJokesMatcher = withId(R.id.button_multiple_jokes)
     }
 }
