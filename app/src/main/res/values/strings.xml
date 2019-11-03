@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">JokesApp</string>
-
     <!-- DASHBOARD -->
     <string name="dashboard_button_random_joke">RANDOM JOKE</string>
     <string name="dashboard_button_custom_joke">CUSTOM JOKE</string>
