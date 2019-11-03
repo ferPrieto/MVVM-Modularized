@@ -111,7 +111,11 @@ dependencies {
     testImplementation unitTestDependencies.coreTesting
 
     // Acceptance tests dependencies
+    androidTestImplementation acceptanceTestDependencies.testEspressoContrib,{
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    }
     androidTestImplementation acceptanceTestDependencies.testRunner
-    androidTestImplementation acceptanceTestDependencies.espressoCore
+    androidTestImplementation acceptanceTestDependencies.testRules
+    androidTestImplementation acceptanceTestDependencies.testExt
 }
 

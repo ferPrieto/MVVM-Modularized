@@ -52,8 +52,11 @@ ext {
   core_testing_version = '1.1.1'
 
   //Acceptance Testing
-  runner_version = '1.2.0'
+  androidX_test_version = '1.2.0'
   espresso_version = '3.2.0'
+  test_ext_version = '1.1.1'
+  fragment_testing_version = '1.1.1'
+  espresso_contrib_version = '3.0.2'
 
   //Development
   leakCanaryVersion = '1.5'
@@ -96,7 +99,10 @@ ext {
   ]
 
   acceptanceTesting = [
-      testRunner:         "androidx.test:runner:$runner_version",
-      espressoCore:       "androidx.test.espresso:espresso-core:$espresso_version",
+      testEspressoContrib:        "com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version",
+      testRunner:                 "androidx.test:runner:$androidX_test_version",
+      testRules:                  "androidx.test:rules:$androidX_test_version",
+      testExt:                    "androidx.test.ext:junit:$test_ext_version",
+      fragmentTesting:            "androidx.fragment:fragment-testing:$fragment_testing_version"
   ]
 }
