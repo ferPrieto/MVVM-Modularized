@@ -21,7 +21,7 @@ class DashboardFragmentTest {
         DashboardFragmentRobot()
             .assertButtonRandomJokeDisplayed()
             .clickButtonRandomJoke()
-            .assertDialogViewDisplayed()
+            .assertDialogViewRandomJokeDisplayed()
     }
 
     @Test
@@ -29,7 +29,7 @@ class DashboardFragmentTest {
         DashboardFragmentRobot()
             .assertButtonRandomJokeDisplayed()
             .clickButtonRandomJoke()
-            .assertDialogViewDisplayed()
+            .assertDialogViewRandomJokeDisplayed()
             .clickDismissButtonDialog()
     }
 
@@ -40,7 +40,7 @@ class DashboardFragmentTest {
             .clickButtonCustomJoke()
 
         CustomFragmentRobot()
-            .assertFirstEditTextViewDisplayed()
+            .assertFirstNameEditTextViewDisplayed()
     }
 
     @Test
