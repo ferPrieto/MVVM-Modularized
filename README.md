@@ -24,7 +24,7 @@ The initial Clean Architecture approach was developed by me in a Bitbucket repos
 In order to follow the latest Android standards, the project will include the next points (progressively):
 - ~~Complete the VM unit tests~~ (DONE)
 - ~~LiveData, instead of Rx (outputs)~~ (DONE)
-- UI Tests using Espresso and Robot pattern (reference [Adam McNeilly]) (WIP)
+- ~~UI Tests using Espresso and Robot pattern~~ (reference [Adam McNeilly]) (DONE)
 - MockWebServer for testing HTTP clients.
 - Finding out a better approach for the local Source in order to test it properly
 
