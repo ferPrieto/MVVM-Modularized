@@ -26,8 +26,13 @@ In order to follow the latest Android standards, the project will include the ne
 - ~~LiveData, instead of Rx (outputs)~~ (DONE)
 - ~~UI Tests using Espresso and Robot pattern~~ (reference [Adam McNeilly]) (DONE)
 - MockWebServer for testing HTTP clients.
-- Finding out a better approach for the local Source in order to test it properly
+- Add isolation Fragment tests (dialog actions, VM interaction, etc). Ref: Test your app's fragments [ref_fragment]
+- Add Navigation Module
+- Change modules for feature Module, in order to create two branches: `Feature-Modules` and `Data-Layer-Modules'
+- Improve UI elements
+- Add feature Detail
 
+[ref_fragment]: https://developer.android.com/training/basics/fragments/testing
 [Adam McNeilly]: https://github.com/AdamMc331
 
 ## Libraries Used
