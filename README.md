@@ -24,7 +24,7 @@ The initial Clean Architecture approach was developed by me in a Bitbucket repos
 In order to follow the latest Android standards, the project will include the next points (progressively):
 - ~~Complete the VM unit tests~~ (DONE)
 - ~~LiveData, instead of Rx (outputs)~~ (DONE)
-- UI Tests
+- ~~UI Tests using Espresso and Robot pattern~~ (reference [Adam McNeilly]) (DONE)
 - MockWebServer for testing HTTP clients.
 - Add isolation Fragment tests (dialog actions, VM interaction, etc). Ref: Test your app's fragments [ref_fragment]
 - Add Navigation Module
@@ -33,6 +33,8 @@ In order to follow the latest Android standards, the project will include the ne
 - Add feature Detail
 
 [ref_fragment]: https://developer.android.com/training/basics/fragments/testing
+
+[Adam McNeilly]: https://github.com/AdamMc331
 
 ## Libraries Used
 

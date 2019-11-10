@@ -1,8 +1,6 @@
 package prieto.fernando.jokesapp.dashboard
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
@@ -19,8 +17,14 @@ class DashboardFragmentRobot {
         onView(buttonRandomJokeMatcher).perform(click())
     }
 
-    fun assertDialogViewDisplayed() = apply {
-        onView(dialogTitleViewMatcher)
+    fun assertDialogViewRandomJokeDisplayed() = apply {
+        onView(dialogRandomTitleViewMatcher)
+            .inRoot(isDialog())
+            .check(matches(isDisplayed()))
+    }
+
+    fun assertDialogViewCustomJokeDisplayed() = apply {
+        onView(dialogCustomTitleViewMatcher)
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
     }
@@ -47,7 +51,8 @@ class DashboardFragmentRobot {
 
     companion object {
         private val buttonRandomJokeMatcher = withId(R.id.button_random_joke)
-        private val dialogTitleViewMatcher = withText("Random Joke")
+        private val dialogRandomTitleViewMatcher = withText("Random Joke")
+        private val dialogCustomTitleViewMatcher = withText("Custom Joke")
         private val dialogButtonViewMatcher = withText("DISMISS")
         private val buttonCustomJokeMatcher = withId(R.id.button_custom_joke)
         private val buttonInfiniteJokesMatcher = withId(R.id.button_multiple_jokes)
