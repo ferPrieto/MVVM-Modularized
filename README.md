@@ -33,7 +33,6 @@ In order to follow the latest Android standards, the project will include the ne
 - Add feature Detail
 
 [ref_fragment]: https://developer.android.com/training/basics/fragments/testing
-
 [Adam McNeilly]: https://github.com/AdamMc331
 
 ## Libraries Used
