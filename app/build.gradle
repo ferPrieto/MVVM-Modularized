@@ -32,6 +32,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("Integer",
+                    "PORT",
+                    "8080")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -39,7 +44,6 @@ android {
     }
 
     testOptions {
-
         unitTests.returnDefaultValues = true
 
         unitTests.all {
@@ -111,11 +115,12 @@ dependencies {
     testImplementation unitTestDependencies.coreTesting
 
     // Acceptance tests dependencies
-    androidTestImplementation acceptanceTestDependencies.testEspressoContrib,{
+    androidTestImplementation acceptanceTestDependencies.testEspressoContrib, {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
     androidTestImplementation acceptanceTestDependencies.testRunner
     androidTestImplementation acceptanceTestDependencies.testRules
     androidTestImplementation acceptanceTestDependencies.testExt
+    androidTestImplementation acceptanceTestDependencies.webMockServer
 }
 

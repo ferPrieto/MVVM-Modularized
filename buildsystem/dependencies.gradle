@@ -1,108 +1,110 @@
 allprojects {
-  repositories {
-    google()
-    jcenter()
-  }
-  gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-      options.compilerArgs << "-Xlint:deprecation"
+    repositories {
+        google()
+        jcenter()
     }
-  }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
 }
 
 ext {
-  // Android libraries
-  appCompat_version = '1.1.0'
-  constraintLayout_version = '1.1.3'
-  archComponents_version = '2.1.0'
+    // Android libraries
+    appCompat_version = '1.1.0'
+    constraintLayout_version = '1.1.3'
+    archComponents_version = '2.1.0'
 
-  // Navigation
-  navigation_ktx_version='1.0.0'
+    // Navigation
+    navigation_ktx_version = '1.0.0'
 
-  // Dependency Injection
-  dagger_version = '2.16'
-  dagger_compiler_version = '2.16'
+    // Dependency Injection
+    dagger_version = '2.16'
+    dagger_compiler_version = '2.16'
 
-  // Retrofit
-  retrofit_version ='2.5.0'
-  retrofit_converter_gson_version ='2.4.0'
-  retrofit_rxjava2_adapter_version ='1.0.0'
+    // Retrofit
+    retrofit_version = '2.5.0'
+    retrofit_converter_gson_version = '2.4.0'
+    retrofit_rxjava2_adapter_version = '1.0.0'
 
-  // OkHttp
-  okhttp_logging_interceptor_version ='3.9.1'
+    // OkHttp
+    okhttp_logging_interceptor_version = '3.9.1'
 
-  // Rx
-  rxjava_version= '2.2.7'
-  rxkotlin_version= '2.3.0'
-  rxandroid_version= '2.1.1'
-  rxbinding_version= '2.2.0'
+    // Rx
+    rxjava_version = '2.2.7'
+    rxkotlin_version = '2.3.0'
+    rxandroid_version = '2.1.1'
+    rxbinding_version = '2.2.0'
 
-  // Build Android and Dagger with JDK9+
-  jdk9_builder_version = '1.0'
+    // Build Android and Dagger with JDK9+
+    jdk9_builder_version = '1.0'
 
-  // Loggin
-  timber_version = '4.7.1'
+    // Loggin
+    timber_version = '4.7.1'
 
-  //Unit Testing
-  junit_version = '4.12'
-  mockito_version = '2.27.0'
-  mockito_kotlin_version = '1.5.0'
-  junit_platform_runner_version = '1.0.2'
-  commons_codec_version = '1.12'
-  core_testing_version = '1.1.1'
+    //Unit Testing
+    junit_version = '4.12'
+    mockito_version = '2.27.0'
+    mockito_kotlin_version = '1.5.0'
+    junit_platform_runner_version = '1.0.2'
+    commons_codec_version = '1.12'
+    core_testing_version = '1.1.1'
 
-  //Acceptance Testing
-  androidX_test_version = '1.2.0'
-  espresso_version = '3.2.0'
-  test_ext_version = '1.1.1'
-  fragment_testing_version = '1.1.1'
-  espresso_contrib_version = '3.0.2'
+    //Acceptance Testing
+    androidX_test_version = '1.2.0'
+    espresso_version = '3.2.0'
+    test_ext_version = '1.1.1'
+    fragment_testing_version = '1.1.1'
+    espresso_contrib_version = '3.0.2'
+    web_mock_server_version = '4.2.2'
 
-  //Development
-  leakCanaryVersion = '1.5'
+    //Development
+    leakCanaryVersion = '1.5'
 
-  mainApplication = [
-      kotlin:                     "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-      appCompat:                  "androidx.appcompat:appcompat:$appCompat_version",
-      coreKtx:                   "androidx.core:core-ktx:$appCompat_version",
-      constraintLayout:           "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
-      archViewModel:              "androidx.lifecycle:lifecycle-viewmodel:$archComponents_version",
-      archComponents:             "androidx.lifecycle:lifecycle-extensions:$archComponents_version",
-      lifecycleCompiler:          "androidx.lifecycle:lifecycle-compiler:$archComponents_version",
-      archComponentsCompiler:     "android.arch.lifecycle:compiler:$archComponents_version",
-      archNavigationFragment:     "android.arch.navigation:navigation-fragment-ktx:$navigation_ktx_version",
-      archNavigationUi:           "android.arch.navigation:navigation-ui-ktx:$navigation_ktx_version",
-      daggerAndroid:              "com.google.dagger:dagger-android:$dagger_version",
-      daggerAndroidSupport:       "com.google.dagger:dagger-android-support:$dagger_version",
-      daggerCompiler:             "com.google.dagger:dagger-compiler:$dagger_version",
-      daggerAndroidProcessor:     "com.google.dagger:dagger-android-processor:$dagger_version",
-      retrofit:                   "com.squareup.retrofit2:retrofit:$retrofit_version",
-      retrofitConverterGson:      "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version",
-      retrofitRxjava2Adapter:     "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit_rxjava2_adapter_version",
-      okHttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
-      rxJava:                     "io.reactivex.rxjava2:rxjava:$rxjava_version",
-      rxKotlin:                   "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version",
-      rxAndroid:                  "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
-      rxBinding:                  "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rxbinding_version",
-      timber:                     "com.jakewharton.timber:timber:$timber_version",
-      jdk9Builder:                "com.github.pengrad:jdk9-deps:$jdk9_builder_version"
-  ]
+    mainApplication = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            appCompat               : "androidx.appcompat:appcompat:$appCompat_version",
+            coreKtx                 : "androidx.core:core-ktx:$appCompat_version",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
+            archViewModel           : "androidx.lifecycle:lifecycle-viewmodel:$archComponents_version",
+            archComponents          : "androidx.lifecycle:lifecycle-extensions:$archComponents_version",
+            lifecycleCompiler       : "androidx.lifecycle:lifecycle-compiler:$archComponents_version",
+            archComponentsCompiler  : "android.arch.lifecycle:compiler:$archComponents_version",
+            archNavigationFragment  : "android.arch.navigation:navigation-fragment-ktx:$navigation_ktx_version",
+            archNavigationUi        : "android.arch.navigation:navigation-ui-ktx:$navigation_ktx_version",
+            daggerAndroid           : "com.google.dagger:dagger-android:$dagger_version",
+            daggerAndroidSupport    : "com.google.dagger:dagger-android-support:$dagger_version",
+            daggerCompiler          : "com.google.dagger:dagger-compiler:$dagger_version",
+            daggerAndroidProcessor  : "com.google.dagger:dagger-android-processor:$dagger_version",
+            retrofit                : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version",
+            retrofitRxjava2Adapter  : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit_rxjava2_adapter_version",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
+            rxJava                  : "io.reactivex.rxjava2:rxjava:$rxjava_version",
+            rxKotlin                : "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version",
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
+            rxBinding               : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rxbinding_version",
+            timber                  : "com.jakewharton.timber:timber:$timber_version",
+            jdk9Builder             : "com.github.pengrad:jdk9-deps:$jdk9_builder_version"
+    ]
 
-  unitTesting = [
-      junit:                      "junit:junit:$junit_version",
-      mockitoCore:                "org.mockito:mockito-core:$mockito_version",
-      mockitoInline:              "org.mockito:mockito-inline:$mockito_version",
-      mockitoKotlin:              "com.nhaarman:mockito-kotlin:$mockito_kotlin_version",
-      junitPlatformRunner:        "org.junit.platform:junit-platform-runner:$junit_platform_runner_version",
-      commonsCodec:               "commons-codec:commons-codec:$commons_codec_version",
-      coreTesting:                "android.arch.core:core-testing:$core_testing_version"
-  ]
+    unitTesting = [
+            junit              : "junit:junit:$junit_version",
+            mockitoCore        : "org.mockito:mockito-core:$mockito_version",
+            mockitoInline      : "org.mockito:mockito-inline:$mockito_version",
+            mockitoKotlin      : "com.nhaarman:mockito-kotlin:$mockito_kotlin_version",
+            junitPlatformRunner: "org.junit.platform:junit-platform-runner:$junit_platform_runner_version",
+            commonsCodec       : "commons-codec:commons-codec:$commons_codec_version",
+            coreTesting        : "android.arch.core:core-testing:$core_testing_version"
+    ]
 
-  acceptanceTesting = [
-      testEspressoContrib:        "com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version",
-      testRunner:                 "androidx.test:runner:$androidX_test_version",
-      testRules:                  "androidx.test:rules:$androidX_test_version",
-      testExt:                    "androidx.test.ext:junit:$test_ext_version",
-      fragmentTesting:            "androidx.fragment:fragment-testing:$fragment_testing_version"
-  ]
+    acceptanceTesting = [
+            testEspressoContrib: "com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version",
+            testRunner         : "androidx.test:runner:$androidX_test_version",
+            testRules          : "androidx.test:rules:$androidX_test_version",
+            testExt            : "androidx.test.ext:junit:$test_ext_version",
+            fragmentTesting    : "androidx.fragment:fragment-testing:$fragment_testing_version",
+            webMockServer      : "com.squareup.okhttp3:mockwebserver:$web_mock_server_version"
+    ]
 }
