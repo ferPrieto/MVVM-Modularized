@@ -20,10 +20,9 @@ interface InfiniteJokeViewModelInputs : BaseViewModelInputs {
 private const val JOKES_REQUESTED = 12
 
 class InfiniteJokesViewModel @Inject constructor(
-    application: Application,
     private val multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase,
     private val randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
-) : BaseViewModel(application), InfiniteJokeViewModelInputs {
+) : BaseViewModel(), InfiniteJokeViewModelInputs {
 
     override val inputs: InfiniteJokeViewModelInputs
         get() = this

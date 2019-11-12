@@ -10,7 +10,7 @@ interface MainViewModelInputs : BaseViewModelInputs
 
 interface MainViewModelOutputs : BaseViewModelOutputs
 
-open class MainViewModel @Inject constructor(application: Application) : BaseViewModel(application),
+open class MainViewModel @Inject constructor() : BaseViewModel(),
     MainViewModelInputs,
     MainViewModelOutputs {
 

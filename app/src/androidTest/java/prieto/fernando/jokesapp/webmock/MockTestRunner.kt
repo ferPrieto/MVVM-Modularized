@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.test.runner.AndroidJUnitRunner
-import prieto.fernando.jokesapp.di.test.TestJokesApp
+import prieto.fernando.jokesapp.JokesApp
 
 class MockTestRunner : AndroidJUnitRunner() {
     override fun onCreate(arguments: Bundle?) {
@@ -18,6 +18,6 @@ class MockTestRunner : AndroidJUnitRunner() {
         className: String?,
         context: Context?
     ): Application {
-        return super.newApplication(cl, TestJokesApp::class.java.name, context)
+        return super.newApplication(cl, JokesApp::class.java.name, context)
     }
 }

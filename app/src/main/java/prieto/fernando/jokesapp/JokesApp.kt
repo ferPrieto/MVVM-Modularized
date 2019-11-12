@@ -5,13 +5,7 @@ import dagger.android.DaggerApplication
 import prieto.fernando.jokesapp.di.DaggerAppComponent
 
 open class JokesApp : DaggerApplication() {
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        val appComponent = DaggerAppComponent.builder()
-            .application(this)
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+        DaggerAppComponent.builder()
             .build()
-
-        appComponent.inject(this)
-        return appComponent
-    }
 }

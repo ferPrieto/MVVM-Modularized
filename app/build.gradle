@@ -31,6 +31,10 @@ android {
         targetCompatibility 1.8
     }
 
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
     buildTypes {
         debug {
             buildConfigField("Integer",
@@ -122,4 +126,6 @@ dependencies {
     androidTestImplementation acceptanceTestDependencies.testRules
     androidTestImplementation acceptanceTestDependencies.testExt
     androidTestImplementation acceptanceTestDependencies.webMockServer
+    androidTestImplementation acceptanceTestDependencies.testCore
+    androidTestImplementation acceptanceTestDependencies.coreKtx
 }

@@ -105,6 +105,8 @@ ext {
             testRules          : "androidx.test:rules:$androidX_test_version",
             testExt            : "androidx.test.ext:junit:$test_ext_version",
             fragmentTesting    : "androidx.fragment:fragment-testing:$fragment_testing_version",
-            webMockServer      : "com.squareup.okhttp3:mockwebserver:$web_mock_server_version"
+            webMockServer      : "com.squareup.okhttp3:mockwebserver:$web_mock_server_version",
+            testCore           : "androidx.test:core:$androidX_test_version",
+            coreKtx            : "androidx.test:core-ktx:$androidX_test_version"
     ]
 }

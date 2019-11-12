@@ -1,6 +1,5 @@
 package prieto.fernando.presentation.custom
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import prieto.fernando.presentation.BaseViewModel
@@ -17,10 +16,9 @@ interface CustomJokeViewModelInputs : BaseViewModelInputs {
 }
 
 class CustomJokeViewModel @Inject constructor(
-    application: Application,
     private val customJokeUseCase: GetCustomRandomJokeUseCase,
     private val buttonStateEvaluator: NamesButtonStateEvaluator
-) : BaseViewModel(application),
+) : BaseViewModel(),
     CustomJokeViewModelInputs {
 
     private val doneButtonEnabled = MutableLiveData<Boolean>()

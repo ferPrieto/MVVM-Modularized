@@ -1,18 +1,14 @@
 package prieto.fernando.jokesapp.di
 
-import android.app.Application
-import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import di.RepositoryModule
 import prieto.fernando.di.ChuckNorrisApiModule
-import javax.inject.Singleton
 import prieto.fernando.di.NetworkModule
 import prieto.fernando.jokesapp.JokesApp
+import javax.inject.Singleton
 
-@Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
@@ -22,15 +18,5 @@ import prieto.fernando.jokesapp.JokesApp
         RepositoryModule::class,
         MainActivityModule::class]
 )
-interface AppComponent : AndroidInjector<DaggerApplication> {
-
-    fun inject(app: JokesApp)
-
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(app: Application): Builder
-
-        fun build(): AppComponent
-    }
-}
+@Singleton
+interface AppComponent : AndroidInjector<JokesApp>

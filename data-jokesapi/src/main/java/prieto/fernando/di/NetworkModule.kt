@@ -17,16 +17,21 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+class NetworkModule(
+    private val baseUrlOverride: String? = null
+) {
+    @Provides
+    @Named("BASE_URL")
+    fun provideBaseUrl() = baseUrlOverride ?: "https://api.icndb.com/"
 
     @Provides
     @Singleton
     fun provideRetrofitBuilder(
         rxJavaCallAdapterFactory: RxJava2CallAdapterFactory,
         gsonConverterFactory: GsonConverterFactory,
-        @Named("API_URL") apiUrl: String
+        @Named("BASE_URL") baseUrl: String
     ) = Retrofit.Builder()
-        .baseUrl(apiUrl)
+        .baseUrl(baseUrl)
         .addConverterFactory(gsonConverterFactory)
         .addCallAdapterFactory(rxJavaCallAdapterFactory)
 

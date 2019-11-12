@@ -24,7 +24,4 @@ open class AppModule {
     @Singleton
     fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()
 
-    @Provides
-    @Named("API_URL")
-    fun provideApiUrl() = "https://api.icndb.com/"
 }

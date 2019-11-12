@@ -1,5 +1,6 @@
 package prieto.fernando.jokesapp.custom
 
+import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import okhttp3.mockwebserver.MockWebServer
@@ -12,13 +13,10 @@ import prieto.fernando.jokesapp.BuildConfig
 import prieto.fernando.jokesapp.dashboard.DashboardFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
+import prieto.fernando.jokesapp.webmock.injectTestConfiguration
 
 @RunWith(AndroidJUnit4::class)
 class CustomFragmentTest {
-
-    @Rule
-    @JvmField
-    var activityTestRule = ActivityTestRule(MainActivity::class.java, true, true)
 
     private val mockWebServer = MockWebServer()
 
@@ -26,9 +24,6 @@ class CustomFragmentTest {
     fun setup(){
         mockWebServer.start(BuildConfig.PORT)
 
-        DashboardFragmentRobot()
-            .assertButtonCustomJokeDisplayed()
-            .clickButtonCustomJoke()
     }
 
     @After
@@ -38,6 +33,11 @@ class CustomFragmentTest {
 
     @Test
     fun textInputsNotPassingCriteria() {
+        launchActivity<MainActivity>()
+
+        DashboardFragmentRobot()
+            .assertButtonCustomJokeDisplayed()
+            .clickButtonCustomJoke()
 
         CustomFragmentRobot()
             .assertFirstNameEditTextViewDisplayed()
@@ -51,6 +51,11 @@ class CustomFragmentTest {
 
     @Test
     fun textInputsPassingCriteria() {
+        launchActivity<MainActivity>()
+
+        DashboardFragmentRobot()
+            .assertButtonCustomJokeDisplayed()
+            .clickButtonCustomJoke()
 
         CustomFragmentRobot()
             .assertFirstNameEditTextViewDisplayed()
@@ -64,6 +69,15 @@ class CustomFragmentTest {
 
     @Test
     fun setCustomMessageAndDialogViewPrompted() {
+        injectTestConfiguration {
+            testBaseUrl()
+        }
+        launchActivity<MainActivity>()
+
+        DashboardFragmentRobot()
+            .assertButtonCustomJokeDisplayed()
+            .clickButtonCustomJoke()
+
         mockWebServer.dispatcher = SuccessDispatcher()
 
         CustomFragmentRobot()
