@@ -1,2 +1,2 @@
-include ':app', ':core', ':data-jokesapi', ':domain', ':data-cache', ':presentation'
+include ':app', ':core', ':data-jokesapi', ':domain', ':data-cache', ':presentation',':navigation'
 rootProject.name='JokesApp'
