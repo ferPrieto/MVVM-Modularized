@@ -25,9 +25,9 @@ In order to follow the latest Android standards, the project will include the ne
 - ~~Complete the VM unit tests~~ (DONE)
 - ~~LiveData, instead of Rx (outputs)~~ (DONE)
 - ~~UI Tests using Espresso and Robot pattern~~ (reference [Adam McNeilly]) (DONE)
-- MockWebServer for testing HTTP clients.
+- ~~MockWebServer for testing HTTP clients~~ (DONE)
 - Add `Isolation Fragment Tests` (dialog actions, VM interaction, etc). Ref: Test your app's fragments [Ref][ref_fragment]
-- Add Navigation Module
+- ~~Add Navigation Module~~ (DONE)
 - Change modules for feature Module, in order to create two branches: `Feature-Modules` and `Data-Layer-Modules`
 - Improve UI elements
 - Add feature Detail
@@ -41,22 +41,25 @@ In order to follow the latest Android standards, the project will include the ne
 * [LiveData][1] for reactive style programming (from VM to UI). 
 * [Navigation][2] for in-app navigation. 
 * [Rx][3] for cache storage.
-* [Dagger][4] for dependency injection.
+* [Dagger2][4] for dependency injection.
 * [Retrofit][5] for REST api communication.  
 * [Timber][6] for logging.
 * [Espresso][7] for UI tests.
 * [Mockito-Kotlin][8] for mocking in tests.
+* [MockWebServer][9] for Instrumentation tests.
+* [AndroidX Test Library][10] for providing JUnit4 and functions as `launchActivity` in UI tests,
 
-[0]: https://github.com/ReactiveX/RxAndroid
-[1]: https://developer.android.com/topic/libraries/architecture/livedata
-[2]: https://developer.android.com/topic/libraries/architecture/navigation/
-[3]: https://github.com/ReactiveX/RxAndroid
-[4]: https://github.com/google/dagger
-[5]: https://github.com/square/retrofit 
-[6]: https://github.com/JakeWharton/timber
-[7]: https://developer.android.com/training/testing/espresso/
-[8]: https://github.com/nhaarman/mockito-kotlin 
-
+[0]:  https://github.com/ReactiveX/RxAndroid
+[1]:  https://developer.android.com/topic/libraries/architecture/livedata
+[2]:  https://developer.android.com/topic/libraries/architecture/navigation/
+[3]:  https://github.com/ReactiveX/RxAndroid
+[4]:  https://github.com/google/dagger
+[5]:  https://github.com/square/retrofit
+[6]:  https://github.com/JakeWharton/timber
+[7]:  https://developer.android.com/training/testing/espresso/
+[8]:  https://github.com/nhaarman/mockito-kotlin
+[9]:  https://github.com/square/okhttp/tree/master/mockwebserver
+[10]: https://github.com/android/android-test
 
 ## Demo
 
