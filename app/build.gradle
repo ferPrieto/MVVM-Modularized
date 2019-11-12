@@ -78,6 +78,7 @@ dependencies {
     implementation project(':data-cache')
     implementation project(':domain')
     implementation project(':presentation')
+    implementation project(':navigation')
 
     compileOnly applicationDependencies.jdk9Builder
 

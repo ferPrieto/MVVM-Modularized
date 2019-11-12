@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/dashboardFragment">
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="prieto.fernando.jokesapp.view.dashboard.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard">
+        android:name="prieto.fernando.jokesapp.view.dashboard.DashboardFragment">
         <action
             android:id="@+id/goToCustomJokeFragment"
             app:destination="@id/customJokeFragment"
@@ -21,12 +19,9 @@
 
     <fragment
         android:id="@+id/customJokeFragment"
-        android:name="prieto.fernando.jokesapp.view.custom.CustomJokeFragment"
-        tools:layout="@layout/fragment_custom_joke" />
+        android:name="prieto.fernando.jokesapp.view.custom.CustomJokeFragment" />
 
     <fragment
         android:id="@+id/infiniteJokesFragment"
-        android:name="prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment"
-        tools:layout="@layout/fragment_infinite_jokes" />
-
+        android:name="prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment" />
 </navigation>

@@ -1,0 +1,10 @@
+apply from: "$rootDir/base-android-library.gradle"
+
+apply plugin: "androidx.navigation.safeargs"
+
+dependencies {
+    def applicationDependencies = rootProject.ext.mainApplication
+
+    implementation applicationDependencies.archNavigationFragment
+    implementation applicationDependencies.archNavigationUi
+}
