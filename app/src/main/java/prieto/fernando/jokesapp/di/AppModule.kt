@@ -5,12 +5,15 @@ import android.content.Context
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
+import prieto.fernando.jokesapp.JokesApp
 import javax.inject.Singleton
 import prieto.fernando.presentation.AppSchedulerProvider
 import prieto.fernando.presentation.SchedulerProvider
+import javax.inject.Named
 
 @Module
-class AppModule {
+open class AppModule {
+
     @Provides
     fun provideContext(app: Application): Context = app.applicationContext
 
@@ -20,4 +23,5 @@ class AppModule {
     @Provides
     @Singleton
     fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()
+
 }

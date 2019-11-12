@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import prieto.fernando.jokesapp.R
-import prieto.fernando.presentation.RandomJokeUiModel
-import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
-import prieto.fernando.jokesapp.view.infinite.widget.EndlessRecyclerViewScrollListener
+import prieto.fernando.presentation.RandomJokeUiModel
+import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
 
@@ -36,13 +34,6 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
         infiniteRecyclerView.adapter = jokesAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         infiniteRecyclerView.layoutManager = linearLayoutManager
-        val endlessScrollListener =
-            object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
-                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                    viewModel.inputs.multipleRandomJokes()
-                }
-            }
-        infiniteRecyclerView.addOnScrollListener(endlessScrollListener)
     }
 
     override fun onResume() {

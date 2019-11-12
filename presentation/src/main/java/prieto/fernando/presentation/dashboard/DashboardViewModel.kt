@@ -24,12 +24,11 @@ interface DashboardViewModelInputs : BaseViewModelInputs {
 }
 
 class DashboardViewModel @Inject constructor(
-    application: Application,
     private val customRandomJokeUseCase: GetCustomRandomJokeUseCase,
     private val randomJokeUseCase: GetRandomJokeUseCase,
     private val resetCustomRandomJokeUseCase: ResetCustomRandomJokeUseCase,
     private val randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
-) : BaseViewModel(application),
+) : BaseViewModel(),
     DashboardViewModelInputs {
 
     private val navigateToCustomJoke: MutableLiveData<Unit> = MutableLiveData()
