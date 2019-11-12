@@ -26,5 +26,5 @@ open class AppModule {
 
     @Provides
     @Named("API_URL")
-    open fun provideApiUrl() = "https://api.icndb.com/"
+    fun provideApiUrl() = "https://api.icndb.com/"
 }

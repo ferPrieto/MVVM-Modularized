@@ -38,7 +38,6 @@ class CustomFragmentTest {
 
     @Test
     fun textInputsNotPassingCriteria() {
-        mockWebServer.dispatcher = SuccessDispatcher()
 
         CustomFragmentRobot()
             .assertFirstNameEditTextViewDisplayed()
@@ -52,7 +51,6 @@ class CustomFragmentTest {
 
     @Test
     fun textInputsPassingCriteria() {
-        mockWebServer.dispatcher = SuccessDispatcher()
 
         CustomFragmentRobot()
             .assertFirstNameEditTextViewDisplayed()
@@ -71,10 +69,10 @@ class CustomFragmentTest {
         CustomFragmentRobot()
             .assertFirstNameEditTextViewDisplayed()
             .clickFirstNameEditTextView()
-            .inputFirstNameEditTextView("Steve")
+            .inputFirstNameEditTextView("Fernando")
             .assertLastNameEditTextViewDisplayed()
             .clickLastNameEditTextView()
-            .inputLastNameEditTextView("Cook")
+            .inputLastNameEditTextView("Prieto")
             .enabledDoneButton()
             .clickDoneButton()
 
