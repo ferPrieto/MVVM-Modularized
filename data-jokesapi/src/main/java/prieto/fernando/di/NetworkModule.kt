@@ -7,13 +7,14 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import prieto.fernando.data_jokesapi.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
@@ -22,9 +23,10 @@ class NetworkModule {
     @Singleton
     fun provideRetrofitBuilder(
         rxJavaCallAdapterFactory: RxJava2CallAdapterFactory,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
+        @Named("API_URL") apiUrl: String
     ) = Retrofit.Builder()
-        .baseUrl("https://api.icndb.com/")
+        .baseUrl(apiUrl)
         .addConverterFactory(gsonConverterFactory)
         .addCallAdapterFactory(rxJavaCallAdapterFactory)
 

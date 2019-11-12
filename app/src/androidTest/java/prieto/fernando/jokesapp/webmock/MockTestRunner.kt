@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.test.runner.AndroidJUnitRunner
+import prieto.fernando.jokesapp.di.test.TestJokesApp
 
 class MockTestRunner : AndroidJUnitRunner() {
     override fun onCreate(arguments: Bundle?) {

@@ -123,4 +123,3 @@ dependencies {
     androidTestImplementation acceptanceTestDependencies.testExt
     androidTestImplementation acceptanceTestDependencies.webMockServer
 }
-

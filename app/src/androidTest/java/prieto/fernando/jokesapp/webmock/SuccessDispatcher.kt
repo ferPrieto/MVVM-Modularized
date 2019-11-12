@@ -6,10 +6,11 @@ import androidx.test.platform.app.InstrumentationRegistry
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
+import prieto.fernando.jokesapp.webmock.AssetReaderUtil.asset
 
-const val RANDOM_JOKE = "jokes/random"
-const val CUSTOM_JOKE = "jokes/random?firstName=Jhon&lastName=Hopkins"
-const val INFINITE_JOKES = "jokes/random/12"
+const val RANDOM_JOKE = "/jokes/random"
+const val CUSTOM_JOKE = "/jokes/random?firstName=Fernando&lastName=Prieto"
+const val INFINITE_JOKES = "/jokes/random/12"
 const val RANDOM_JOKE_SUCCESS = "random_joke_success.json"
 const val CUSTOM_JOKE_SUCCESS = "custom_joke_success.json"
 const val INFINITE_JOKES_SUCCESS = "joke_list_success.json"
