@@ -6,6 +6,8 @@ import dagger.android.ContributesAndroidInjector
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.view.custom.CustomJokeFragment
 import prieto.fernando.jokesapp.view.dashboard.DashboardFragment
+import prieto.fernando.jokesapp.view.detail.DetailFragment
+import prieto.fernando.jokesapp.view.detail.DetailViewModel
 import prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment
 import prieto.fernando.presentation.ViewModelProviderFactory
 import prieto.fernando.presentation.custom.CustomJokeViewModel
@@ -27,6 +29,9 @@ internal abstract class MainActivityModule {
 
     @ContributesAndroidInjector
     internal abstract fun bindInfiniteJokesFragment(): InfiniteJokesFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindDetailFragment(): DetailFragment
 
     @Module
     companion object {
@@ -52,6 +57,12 @@ internal abstract class MainActivityModule {
         @JvmStatic
         internal fun provideInfiniteJokesViewModelFactory(infiniteJokesViewModel: InfiniteJokesViewModel): ViewModelProviderFactory<InfiniteJokesViewModel> {
             return ViewModelProviderFactory(infiniteJokesViewModel)
+        }
+
+        @Provides
+        @JvmStatic
+        internal fun provideDetailViewModelFactory(detailViewModel: DetailViewModel): ViewModelProviderFactory<DetailViewModel> {
+            return ViewModelProviderFactory(detailViewModel)
         }
     }
 }

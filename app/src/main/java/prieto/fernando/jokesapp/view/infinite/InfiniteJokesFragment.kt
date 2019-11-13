@@ -82,4 +82,8 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
             }
         }
     }
+
+    private fun navigateToDetailFragment(randomJokeUiModel: RandomJokeUiModel) {
+
+    }
 }

@@ -10,15 +10,14 @@ import prieto.fernando.presentation.RandomJokeUiModel
 import prieto.fernando.presentation.mapper.RandomJokeDomainToUiModelMapper
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 interface InfiniteJokeViewModelInputs : BaseViewModelInputs {
     fun multipleRandomJokes()
+    fun onItemSelected(randomJokeUiModel: RandomJokeUiModel)
 }
 
 private const val JOKES_REQUESTED = 12
-private const val REQUEST_DELAY = 1000L
 
 class InfiniteJokesViewModel @Inject constructor(
     private val multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase,
@@ -32,12 +31,14 @@ class InfiniteJokesViewModel @Inject constructor(
         MutableLiveData()
     private val errorResource: MutableLiveData<Int> = MutableLiveData()
     private val loading: MutableLiveData<Boolean> = MutableLiveData()
+    private val itemSelected: MutableLiveData<RandomJokeUiModel> = MutableLiveData()
 
     fun multipleRandomJokesRetrieved(): LiveData<List<RandomJokeUiModel>> =
         multipleRandomJokesRetrieved
 
     fun errorResource(): LiveData<Int> = errorResource
     fun loading(): LiveData<Boolean> = loading
+    fun itemSelected(): LiveData<RandomJokeUiModel> = itemSelected
 
     override fun multipleRandomJokes() {
         multipleRandomJokeUseCase.execute(JOKES_REQUESTED)
@@ -51,6 +52,10 @@ class InfiniteJokesViewModel @Inject constructor(
                 Timber.d(throwable)
                 errorResource.value = R.string.custom_joke_retrieving_error_generic
             }).also { subscriptions.add(it) }
+    }
+
+    override fun onItemSelected(randomJokeUiModel: RandomJokeUiModel) {
+        itemSelected.postValue(randomJokeUiModel)
     }
 
     private fun getRandomJokeUiModels(randomJokeDomainModels: List<RandomJokeDomainModel>) =
