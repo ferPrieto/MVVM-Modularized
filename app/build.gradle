@@ -92,6 +92,8 @@ dependencies {
     implementation applicationDependencies.appCompat
     implementation applicationDependencies.coreKtx
     implementation applicationDependencies.constraintLayout
+    implementation applicationDependencies.recyclerView
+    implementation applicationDependencies.cardView
     implementation applicationDependencies.archViewModel
     implementation applicationDependencies.archComponents
     implementation applicationDependencies.lifecycleCompiler
