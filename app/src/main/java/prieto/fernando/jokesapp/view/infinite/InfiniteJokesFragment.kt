@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_infinite_jokes.*
 import prieto.fernando.jokesapp.R
 import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
+import prieto.fernando.jokesapp.view.infinite.widget.InfiniteScrollListener
 import prieto.fernando.presentation.RandomJokeUiModel
 import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
 
 class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
-
     private var jokesAdapter: JokesAdapter? = null
 
     override fun onCreateView(
@@ -23,6 +24,8 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = inflater.inflate(R.layout.fragment_infinite_jokes, container, false)!!
+
+    private var isLoading = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,6 +37,17 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
         infiniteRecyclerView.adapter = jokesAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         infiniteRecyclerView.layoutManager = linearLayoutManager
+        val endlessScrollListener = object : InfiniteScrollListener(linearLayoutManager) {
+            override fun onLoadMore() {
+                isLoading = true
+                viewModel.multipleRandomJokes()
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+        }
+        infiniteRecyclerView.addOnScrollListener(endlessScrollListener)
     }
 
     override fun onResume() {
@@ -45,14 +59,26 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
         ViewModelProviders.of(this, vmFactory).get(InfiniteJokesViewModel::class.java).apply {
             observe(multipleRandomJokesRetrieved(), ::addJokesToAdapter)
             observe(errorResource(), ::showErrorToast)
+            observe(loading(), ::showLoading)
         }
     }
 
     private fun addJokesToAdapter(randomJokes: List<RandomJokeUiModel>?) {
         randomJokes?.let {
+            isLoading = false
             jokesAdapter?.let { adapter ->
                 adapter.setData(randomJokes)
                 infiniteRecyclerView.adapter = adapter
+            }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean?) {
+        isLoading?.let {
+            progressBar.visibility = if (isLoading) {
+                View.VISIBLE
+            } else {
+                View.GONE
             }
         }
     }
