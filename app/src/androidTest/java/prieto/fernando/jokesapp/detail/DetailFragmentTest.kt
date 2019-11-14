@@ -1,4 +1,4 @@
-package prieto.fernando.jokesapp.infinite
+package prieto.fernando.jokesapp.detail
 
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -9,21 +9,17 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
 import prieto.fernando.jokesapp.dashboard.DashboardFragmentRobot
-import prieto.fernando.jokesapp.detail.DetailFragmentRobot
+import prieto.fernando.jokesapp.infinite.InfiniteFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
 
 @RunWith(AndroidJUnit4::class)
-class InfiniteFragmentTest {
-
+class DetailFragmentTest {
     private val mockWebServer = MockWebServer()
 
     @Before
     fun setup() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
         mockWebServer.start(BuildConfig.PORT)
     }
 
@@ -33,24 +29,7 @@ class InfiniteFragmentTest {
     }
 
     @Test
-    fun justTwelveItemsListed() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
-        launchActivity<MainActivity>()
-        mockWebServer.dispatcher = SuccessDispatcher()
-
-        DashboardFragmentRobot()
-            .assertButtonInfiniteJokesDisplayed()
-            .clickButtonInfiniteJokes()
-
-        InfiniteFragmentRobot()
-            .assertRecyclerViewDisplayed()
-            .assertFirstItemsGroup()
-    }
-
-    @Test
-    fun clickItem() {
+    fun textFieldShown() {
         injectTestConfiguration {
             testBaseUrl()
         }
@@ -64,6 +43,9 @@ class InfiniteFragmentTest {
         InfiniteFragmentRobot()
             .assertRecyclerViewDisplayed()
             .clickItem(1)
-    }
 
+        DetailFragmentRobot()
+            .assertJokeTextViewDisplayed()
+            .assertJokeTex("Divide Chuck Norris by zero and you will in fact get one........one bad-ass that is.")
+    }
 }

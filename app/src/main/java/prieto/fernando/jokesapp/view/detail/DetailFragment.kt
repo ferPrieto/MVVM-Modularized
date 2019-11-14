@@ -20,6 +20,7 @@ class DetailFragment : BaseFragment<DetailViewModel>() {
         super.onResume()
         getBundledContents()
     }
+
     private fun getBundledContents() {
         arguments?.let { bundle ->
             val joke = bundle.getString(DETAIL_FRAGMENT_TYPE_ARG)
@@ -34,6 +35,5 @@ class DetailFragment : BaseFragment<DetailViewModel>() {
 
     companion object {
         const val DETAIL_FRAGMENT_TYPE_ARG = "joke"
-
     }
 }
