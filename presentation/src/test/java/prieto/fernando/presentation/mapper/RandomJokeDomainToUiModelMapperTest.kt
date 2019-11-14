@@ -6,7 +6,6 @@ import org.junit.Test
 import prieto.fernando.data.CategoryDomainModel
 import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.presentation.CategoryUiModel
-import prieto.fernando.presentation.mapper.RandomJokeDomainToUiModelMapper
 import prieto.fernando.presentation.RandomJokeUiModel
 
 class RandomJokeDomainToUiModelMapperTest {

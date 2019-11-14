@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_infinite_jokes.*
 import prieto.fernando.jokesapp.R
+import prieto.fernando.jokesapp.view.detail.DetailFragment
 import prieto.fernando.jokesapp.view.extension.observe
+import prieto.fernando.jokesapp.view.infinite.adapter.ClickListener
 import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
 import prieto.fernando.jokesapp.view.infinite.widget.InfiniteScrollListener
 import prieto.fernando.presentation.RandomJokeUiModel
@@ -16,8 +19,13 @@ import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
 
-class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
+class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>(), ClickListener {
+
     private var jokesAdapter: JokesAdapter? = null
+
+    override fun onItemClicked(joke: String) {
+        viewModel.onJokeSelected(joke)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +41,7 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
     }
 
     private fun setupRecyclerView() {
-        jokesAdapter = JokesAdapter()
+        jokesAdapter = JokesAdapter(this)
         infiniteRecyclerView.adapter = jokesAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         infiniteRecyclerView.layoutManager = linearLayoutManager
@@ -48,6 +56,7 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
             }
         }
         infiniteRecyclerView.addOnScrollListener(endlessScrollListener)
+        
     }
 
     override fun onResume() {
@@ -60,6 +69,7 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
             observe(multipleRandomJokesRetrieved(), ::addJokesToAdapter)
             observe(errorResource(), ::showErrorToast)
             observe(loading(), ::showLoading)
+            observe(jokeSelected(), ::navigateToDetailFragment)
         }
     }
 
@@ -81,5 +91,12 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>() {
                 View.GONE
             }
         }
+    }
+
+    private fun navigateToDetailFragment(joke: String?) {
+        val args = Bundle().apply {
+            putString(DetailFragment.DETAIL_FRAGMENT_TYPE_ARG, joke)
+        }
+        findNavController().navigate(R.id.goToDetailFragment, args)
     }
 }

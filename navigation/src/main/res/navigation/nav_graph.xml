@@ -23,5 +23,17 @@
 
     <fragment
         android:id="@+id/infiniteJokesFragment"
-        android:name="prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment" />
+        android:name="prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment">
+        <action
+            android:id="@+id/goToDetailFragment"
+            app:destination="@id/detailFragment"
+            app:popUpTo="@id/infiniteJokesFragment" />
+        <argument
+            android:name="joke"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="prieto.fernando.jokesapp.view.detail.DetailFragment" />
 </navigation>

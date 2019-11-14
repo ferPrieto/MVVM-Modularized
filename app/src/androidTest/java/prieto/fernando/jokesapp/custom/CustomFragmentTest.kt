@@ -23,7 +23,6 @@ class CustomFragmentTest {
     @Before
     fun setup(){
         mockWebServer.start(BuildConfig.PORT)
-
     }
 
     @After

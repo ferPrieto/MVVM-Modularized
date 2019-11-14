@@ -1,12 +1,9 @@
 # JokesApp
 
 A demo app to show random jokes, with the aim of showing Clean Architecture and Clean code principles
-in a MVVM setup, using RX.
+in a MVVM setup, LiveData and Rxjava.
 
 There's a cache memory used to save and retrieve a custom joke. In order to show a data cache implementation.
-
-The implementation was started from the Data layer to the View, in order to implement the whole
-business logic before the view was presented.
 
 ## About the project
 
@@ -26,11 +23,12 @@ In order to follow the latest Android standards, the project will include the ne
 - ~~LiveData, instead of Rx (outputs)~~ (DONE)
 - ~~UI Tests using Espresso and Robot pattern~~ (reference [Adam McNeilly]) (DONE)
 - ~~MockWebServer for testing HTTP clients~~ (DONE)
-- Add `Isolation Fragment Tests` (dialog actions, VM interaction, etc). Ref: Test your app's fragments [Ref][ref_fragment]
 - ~~Add Navigation Module~~ (DONE)
+- ~~Improve UI elements~~ (DONE)
+- ~~Add feature Detail~~ (DONE)
+- Add `Isolation Fragment Tests` (dialog actions, VM interaction, etc). Ref: Test your app's fragments [Ref][ref_fragment]
 - Change modules for feature Module, in order to create two branches: `Feature-Modules` and `Data-Layer-Modules`
-- Improve UI elements
-- Add feature Detail
+
 
 [ref_fragment]: https://developer.android.com/training/basics/fragments/testing
 [Adam McNeilly]: https://github.com/AdamMc331

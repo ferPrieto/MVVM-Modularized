@@ -12,9 +12,13 @@ interface BindableAdapter<T> {
     fun setData(data: T)
 }
 
-class JokesAdapter : RecyclerView.Adapter<JokesAdapter.JokeHolder>(),
+interface ClickListener {
+    fun onItemClicked(joke: String)
+}
+
+class JokesAdapter (private val clickListener: ClickListener): RecyclerView.Adapter<JokesAdapter.JokeHolder>(),
     BindableAdapter<List<RandomJokeUiModel>> {
-    private var jokes = mutableListOf<RandomJokeUiModel>()
+    private val jokes = mutableListOf<RandomJokeUiModel>()
 
     override fun setData(data: List<RandomJokeUiModel>) {
         jokes.addAll(data)
@@ -29,12 +33,15 @@ class JokesAdapter : RecyclerView.Adapter<JokesAdapter.JokeHolder>(),
     override fun getItemCount() = jokes.size
 
     override fun onBindViewHolder(holder: JokeHolder, position: Int) {
-        holder.bind(jokes[position])
+        holder.bind(jokes[position], clickListener)
     }
 
     class JokeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(randomJokeUiModel: RandomJokeUiModel) {
+        fun bind(randomJokeUiModel: RandomJokeUiModel, clickListener: ClickListener) {
             itemView.item_joke.text = randomJokeUiModel.joke
+            itemView.setOnClickListener {
+                clickListener.onItemClicked(randomJokeUiModel.joke)
+            }
         }
     }
 }
