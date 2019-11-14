@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 interface InfiniteJokeViewModelInputs : BaseViewModelInputs {
     fun multipleRandomJokes()
-    fun onItemSelected(randomJokeUiModel: RandomJokeUiModel)
+    fun onJokeSelected(joke: String)
 }
 
 private const val JOKES_REQUESTED = 12
@@ -31,14 +31,14 @@ class InfiniteJokesViewModel @Inject constructor(
         MutableLiveData()
     private val errorResource: MutableLiveData<Int> = MutableLiveData()
     private val loading: MutableLiveData<Boolean> = MutableLiveData()
-    private val itemSelected: MutableLiveData<RandomJokeUiModel> = MutableLiveData()
+    private val jokeSelected: MutableLiveData<String> = MutableLiveData()
 
     fun multipleRandomJokesRetrieved(): LiveData<List<RandomJokeUiModel>> =
         multipleRandomJokesRetrieved
 
     fun errorResource(): LiveData<Int> = errorResource
     fun loading(): LiveData<Boolean> = loading
-    fun itemSelected(): LiveData<RandomJokeUiModel> = itemSelected
+    fun jokeSelected(): LiveData<String> = jokeSelected
 
     override fun multipleRandomJokes() {
         multipleRandomJokeUseCase.execute(JOKES_REQUESTED)
@@ -54,8 +54,8 @@ class InfiniteJokesViewModel @Inject constructor(
             }).also { subscriptions.add(it) }
     }
 
-    override fun onItemSelected(randomJokeUiModel: RandomJokeUiModel) {
-        itemSelected.postValue(randomJokeUiModel)
+    override fun onJokeSelected(joke: String) {
+        jokeSelected.postValue(joke)
     }
 
     private fun getRandomJokeUiModels(randomJokeDomainModels: List<RandomJokeDomainModel>) =

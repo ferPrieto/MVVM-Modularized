@@ -1,11 +1,11 @@
 package prieto.fernando.presentation.mapper
 
 import dagger.Reusable
-import javax.inject.Inject
 import prieto.fernando.data.CategoryDomainModel
 import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.presentation.CategoryUiModel
 import prieto.fernando.presentation.RandomJokeUiModel
+import javax.inject.Inject
 
 @Reusable
 class RandomJokeDomainToUiModelMapper @Inject constructor() {

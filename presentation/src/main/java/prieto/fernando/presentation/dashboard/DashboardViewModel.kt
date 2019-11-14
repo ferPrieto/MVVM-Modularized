@@ -1,6 +1,5 @@
 package prieto.fernando.presentation.dashboard
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import prieto.fernando.presentation.BaseViewModel

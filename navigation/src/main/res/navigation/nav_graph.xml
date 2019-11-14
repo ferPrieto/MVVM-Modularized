@@ -28,6 +28,9 @@
             android:id="@+id/goToDetailFragment"
             app:destination="@id/detailFragment"
             app:popUpTo="@id/infiniteJokesFragment" />
+        <argument
+            android:name="joke"
+            app:argType="string" />
     </fragment>
 
     <fragment
