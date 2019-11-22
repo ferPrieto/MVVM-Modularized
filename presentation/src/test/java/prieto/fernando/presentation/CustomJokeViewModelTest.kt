@@ -44,7 +44,6 @@ class CustomJokeViewModelTest {
     @Before
     fun setUp() {
         cut = CustomJokeViewModel(
-            application,
             customJokeUseCase,
             buttonStateEvaluator
         )

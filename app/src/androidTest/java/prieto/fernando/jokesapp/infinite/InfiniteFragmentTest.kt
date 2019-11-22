@@ -9,7 +9,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
 import prieto.fernando.jokesapp.dashboard.DashboardFragmentRobot
-import prieto.fernando.jokesapp.detail.DetailFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
@@ -21,9 +20,7 @@ class InfiniteFragmentTest {
 
     @Before
     fun setup() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         mockWebServer.start(BuildConfig.PORT)
     }
 
@@ -34,9 +31,7 @@ class InfiniteFragmentTest {
 
     @Test
     fun justTwelveItemsListed() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
@@ -51,9 +46,7 @@ class InfiniteFragmentTest {
 
     @Test
     fun clickItem() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 

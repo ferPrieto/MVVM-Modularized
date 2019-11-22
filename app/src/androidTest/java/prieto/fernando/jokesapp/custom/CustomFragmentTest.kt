@@ -68,9 +68,7 @@ class CustomFragmentTest {
 
     @Test
     fun setCustomMessageAndDialogViewPrompted() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
 
         DashboardFragmentRobot()

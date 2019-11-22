@@ -30,9 +30,7 @@ class DetailFragmentTest {
 
     @Test
     fun textFieldShown() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
