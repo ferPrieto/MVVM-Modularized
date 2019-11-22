@@ -8,6 +8,9 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import org.hamcrest.Matchers.not
 import prieto.fernando.jokesapp.R
 
+fun customFragmentRobot(func: CustomFragmentRobot.()-> Unit) = CustomFragmentRobot()
+    .apply { func() }
+
 class CustomFragmentRobot {
 
     fun clickFirstNameEditTextView() = apply {

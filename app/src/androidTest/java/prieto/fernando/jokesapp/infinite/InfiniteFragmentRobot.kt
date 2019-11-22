@@ -3,13 +3,14 @@ package prieto.fernando.jokesapp.infinite
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import prieto.fernando.jokesapp.R
 import prieto.fernando.jokesapp.utils.RecyclerViewItemCountAssertion
 import prieto.fernando.jokesapp.utils.RecyclerViewMatcher
-import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
+
+fun infiniteFragmentRobot(func: InfiniteFragmentRobot.() -> Unit) =
+    InfiniteFragmentRobot().apply { func() }
 
 class InfiniteFragmentRobot {
 

@@ -8,7 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
-import prieto.fernando.jokesapp.dashboard.DashboardFragmentRobot
+import prieto.fernando.jokesapp.dashboard.dashboardFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
@@ -35,13 +35,15 @@ class InfiniteFragmentTest {
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonInfiniteJokesDisplayed()
-            .clickButtonInfiniteJokes()
+        dashboardFragmentRobot {
+            assertButtonInfiniteJokesDisplayed()
+            clickButtonInfiniteJokes()
+        }
 
-        InfiniteFragmentRobot()
-            .assertRecyclerViewDisplayed()
-            .assertFirstItemsGroup()
+        infiniteFragmentRobot {
+            assertRecyclerViewDisplayed()
+            assertFirstItemsGroup()
+        }
     }
 
     @Test
@@ -50,13 +52,14 @@ class InfiniteFragmentTest {
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonInfiniteJokesDisplayed()
-            .clickButtonInfiniteJokes()
+        dashboardFragmentRobot {
+            assertButtonInfiniteJokesDisplayed()
+            clickButtonInfiniteJokes()
+        }
 
-        InfiniteFragmentRobot()
-            .assertRecyclerViewDisplayed()
-            .clickItem(1)
+        infiniteFragmentRobot {
+            assertRecyclerViewDisplayed()
+            clickItem(1)
+        }
     }
-
 }

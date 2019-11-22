@@ -8,8 +8,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
-import prieto.fernando.jokesapp.dashboard.DashboardFragmentRobot
-import prieto.fernando.jokesapp.infinite.InfiniteFragmentRobot
+import prieto.fernando.jokesapp.dashboard.dashboardFragmentRobot
+import prieto.fernando.jokesapp.infinite.infiniteFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
@@ -34,16 +34,20 @@ class DetailFragmentTest {
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonInfiniteJokesDisplayed()
-            .clickButtonInfiniteJokes()
+        dashboardFragmentRobot {
+            assertButtonInfiniteJokesDisplayed()
+            clickButtonInfiniteJokes()
+        }
 
-        InfiniteFragmentRobot()
-            .assertRecyclerViewDisplayed()
-            .clickItem(1)
+        infiniteFragmentRobot {
+            assertRecyclerViewDisplayed()
+            clickItem(1)
+        }
 
-        DetailFragmentRobot()
-            .assertJokeTextViewDisplayed()
-            .assertJokeTex("Divide Chuck Norris by zero and you will in fact get one........one bad-ass that is.")
+
+        detailFragmentRobot {
+            assertJokeTextViewDisplayed()
+            assertJokeTex("Divide Chuck Norris by zero and you will in fact get one........one bad-ass that is.")
+        }
     }
 }

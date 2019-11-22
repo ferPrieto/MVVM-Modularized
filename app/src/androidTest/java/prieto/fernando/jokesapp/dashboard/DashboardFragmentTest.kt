@@ -8,8 +8,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
-import prieto.fernando.jokesapp.custom.CustomFragmentRobot
-import prieto.fernando.jokesapp.infinite.InfiniteFragmentRobot
+import prieto.fernando.jokesapp.custom.customFragmentRobot
+import prieto.fernando.jokesapp.infinite.infiniteFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
@@ -35,10 +35,11 @@ class DashboardFragmentTest {
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonRandomJokeDisplayed()
-            .clickButtonRandomJoke()
-            .assertDialogViewRandomJokeDisplayed()
+        dashboardFragmentRobot {
+            assertButtonRandomJokeDisplayed()
+            clickButtonRandomJoke()
+            assertDialogViewRandomJokeDisplayed()
+        }
     }
 
     @Test
@@ -47,23 +48,26 @@ class DashboardFragmentTest {
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonRandomJokeDisplayed()
-            .clickButtonRandomJoke()
-            .assertDialogViewRandomJokeDisplayed()
-            .clickDismissButtonDialog()
+        dashboardFragmentRobot {
+            assertButtonRandomJokeDisplayed()
+            clickButtonRandomJoke()
+            assertDialogViewRandomJokeDisplayed()
+            clickDismissButtonDialog()
+        }
     }
 
     @Test
     fun openCustomJokeScreen() {
         launchActivity<MainActivity>()
 
-        DashboardFragmentRobot()
-            .assertButtonCustomJokeDisplayed()
-            .clickButtonCustomJoke()
+        dashboardFragmentRobot {
+            assertButtonCustomJokeDisplayed()
+            clickButtonCustomJoke()
+        }
 
-        CustomFragmentRobot()
-            .assertFirstNameEditTextViewDisplayed()
+        customFragmentRobot {
+            assertFirstNameEditTextViewDisplayed()
+        }
     }
 
     @Test
@@ -72,11 +76,13 @@ class DashboardFragmentTest {
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonInfiniteJokesDisplayed()
-            .clickButtonInfiniteJokes()
+        dashboardFragmentRobot {
+            assertButtonInfiniteJokesDisplayed()
+            clickButtonInfiniteJokes()
+        }
 
-        InfiniteFragmentRobot()
-            .assertRecyclerViewDisplayed()
+        infiniteFragmentRobot {
+            assertRecyclerViewDisplayed()
+        }
     }
 }
