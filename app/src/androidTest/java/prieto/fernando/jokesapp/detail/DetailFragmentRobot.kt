@@ -6,6 +6,9 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import prieto.fernando.jokesapp.R
 
+fun detailFragmentRobot(func: DetailFragmentRobot.() -> Unit) =
+    DetailFragmentRobot().apply { func() }
+
 class DetailFragmentRobot {
     fun assertJokeTextViewDisplayed() = apply {
         Espresso.onView(DetailFragmentRobot.selectedJokeTextViewMatcher)
@@ -13,8 +16,10 @@ class DetailFragmentRobot {
     }
 
     fun assertJokeTex(joke: String) = apply {
-        Espresso.onView(selectedJokeTextViewMatcher).check(ViewAssertions.matches(ViewMatchers.withText(joke)))
+        Espresso.onView(selectedJokeTextViewMatcher)
+            .check(ViewAssertions.matches(ViewMatchers.withText(joke)))
     }
+
     companion object {
         private val selectedJokeTextViewMatcher = withId(R.id.selected_joke)
     }

@@ -3,7 +3,10 @@ package prieto.fernando.presentation.infinite
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.times
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import junit.framework.Assert.assertEquals
 import org.junit.Before
@@ -41,7 +44,6 @@ class InfiniteJokesViewModelTest {
     @Before
     fun setUp() {
         cut = InfiniteJokesViewModel(
-            application,
             multipleRandomJokeUseCase,
             randomJokeDomainToUiModelMapper
         )

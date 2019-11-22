@@ -2,16 +2,14 @@ package prieto.fernando.jokesapp.dashboard
 
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
-import prieto.fernando.jokesapp.custom.CustomFragmentRobot
-import prieto.fernando.jokesapp.infinite.InfiniteFragmentRobot
+import prieto.fernando.jokesapp.custom.customFragmentRobot
+import prieto.fernando.jokesapp.infinite.infiniteFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
@@ -33,56 +31,58 @@ class DashboardFragmentTest {
 
     @Test
     fun openRandomJokeDialog() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonRandomJokeDisplayed()
-            .clickButtonRandomJoke()
-            .assertDialogViewRandomJokeDisplayed()
+        dashboardFragmentRobot {
+            assertButtonRandomJokeDisplayed()
+            clickButtonRandomJoke()
+            assertDialogViewRandomJokeDisplayed()
+        }
     }
 
     @Test
     fun dismissesRandomJokeDialogAfterOk() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonRandomJokeDisplayed()
-            .clickButtonRandomJoke()
-            .assertDialogViewRandomJokeDisplayed()
-            .clickDismissButtonDialog()
+        dashboardFragmentRobot {
+            assertButtonRandomJokeDisplayed()
+            clickButtonRandomJoke()
+            assertDialogViewRandomJokeDisplayed()
+            clickDismissButtonDialog()
+        }
     }
 
     @Test
     fun openCustomJokeScreen() {
-        DashboardFragmentRobot()
-            .assertButtonCustomJokeDisplayed()
-            .clickButtonCustomJoke()
+        launchActivity<MainActivity>()
 
-        CustomFragmentRobot()
-            .assertFirstNameEditTextViewDisplayed()
+        dashboardFragmentRobot {
+            assertButtonCustomJokeDisplayed()
+            clickButtonCustomJoke()
+        }
+
+        customFragmentRobot {
+            assertFirstNameEditTextViewDisplayed()
+        }
     }
 
     @Test
     fun openInfiniteJokesScreen() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        DashboardFragmentRobot()
-            .assertButtonInfiniteJokesDisplayed()
-            .clickButtonInfiniteJokes()
+        dashboardFragmentRobot {
+            assertButtonInfiniteJokesDisplayed()
+            clickButtonInfiniteJokes()
+        }
 
-        InfiniteFragmentRobot()
-            .assertRecyclerViewDisplayed()
+        infiniteFragmentRobot {
+            assertRecyclerViewDisplayed()
+        }
     }
 }

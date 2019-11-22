@@ -58,7 +58,6 @@ class DashboardViewModelTest {
     @Before
     fun setUp() {
         cut = DashboardViewModel(
-            application,
             customRandomJokeUseCase,
             randomJokeUseCase,
             resetCustomRandomJokeUseCase,

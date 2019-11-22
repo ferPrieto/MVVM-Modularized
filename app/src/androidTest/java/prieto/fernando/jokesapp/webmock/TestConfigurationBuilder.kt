@@ -7,18 +7,9 @@ import prieto.fernando.jokesapp.JokesApp
 import prieto.fernando.jokesapp.di.AppComponent
 import prieto.fernando.jokesapp.di.DaggerAppComponent
 
-const val BASE_URL = "http://127.0.0.1"
 
 class TestConfigurationBuilder {
-    private lateinit var baseUrl: String
-
-    init {
-        testBaseUrl()
-    }
-
-    fun testBaseUrl() {
-        baseUrl = "$BASE_URL:${BuildConfig.PORT}"
-    }
+    private val baseUrl: String ="http://127.0.0.1:${BuildConfig.PORT}"
 
     fun inject() {
         appComponent {

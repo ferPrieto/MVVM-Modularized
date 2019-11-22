@@ -7,6 +7,9 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import prieto.fernando.jokesapp.R
 
+fun dashboardFragmentRobot(func: DashboardFragmentRobot.() -> Unit) =
+    DashboardFragmentRobot().apply { func() }
+
 class DashboardFragmentRobot {
 
     fun assertButtonRandomJokeDisplayed() = apply {

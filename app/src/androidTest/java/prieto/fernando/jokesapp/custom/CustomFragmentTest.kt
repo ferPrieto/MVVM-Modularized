@@ -2,15 +2,13 @@ package prieto.fernando.jokesapp.custom
 
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
-import prieto.fernando.jokesapp.dashboard.DashboardFragmentRobot
+import prieto.fernando.jokesapp.dashboard.dashboardFragmentRobot
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
 import prieto.fernando.jokesapp.webmock.injectTestConfiguration
@@ -21,7 +19,7 @@ class CustomFragmentTest {
     private val mockWebServer = MockWebServer()
 
     @Before
-    fun setup(){
+    fun setup() {
         mockWebServer.start(BuildConfig.PORT)
     }
 
@@ -34,62 +32,67 @@ class CustomFragmentTest {
     fun textInputsNotPassingCriteria() {
         launchActivity<MainActivity>()
 
-        DashboardFragmentRobot()
-            .assertButtonCustomJokeDisplayed()
-            .clickButtonCustomJoke()
+        dashboardFragmentRobot {
+            assertButtonCustomJokeDisplayed()
+            clickButtonCustomJoke()
+        }
 
-        CustomFragmentRobot()
-            .assertFirstNameEditTextViewDisplayed()
-            .clickFirstNameEditTextView()
-            .inputFirstNameEditTextView("a.08483")
-            .assertLastNameEditTextViewDisplayed()
-            .clickLastNameEditTextView()
-            .inputLastNameEditTextView("a")
-            .disabledDoneButton()
+        customFragmentRobot {
+            assertFirstNameEditTextViewDisplayed()
+            clickFirstNameEditTextView()
+            inputFirstNameEditTextView("a.08483")
+            assertLastNameEditTextViewDisplayed()
+            clickLastNameEditTextView()
+            inputLastNameEditTextView("a")
+            disabledDoneButton()
+        }
     }
 
     @Test
     fun textInputsPassingCriteria() {
         launchActivity<MainActivity>()
 
-        DashboardFragmentRobot()
-            .assertButtonCustomJokeDisplayed()
-            .clickButtonCustomJoke()
+        dashboardFragmentRobot {
+            assertButtonCustomJokeDisplayed()
+            clickButtonCustomJoke()
+        }
 
-        CustomFragmentRobot()
-            .assertFirstNameEditTextViewDisplayed()
-            .clickFirstNameEditTextView()
-            .inputFirstNameEditTextView("Fernando")
-            .assertLastNameEditTextViewDisplayed()
-            .clickLastNameEditTextView()
-            .inputLastNameEditTextView("Prieto")
-            .enabledDoneButton()
+        customFragmentRobot {
+            assertFirstNameEditTextViewDisplayed()
+            clickFirstNameEditTextView()
+            inputFirstNameEditTextView("Fernando")
+            assertLastNameEditTextViewDisplayed()
+            clickLastNameEditTextView()
+            inputLastNameEditTextView("Prieto")
+            enabledDoneButton()
+        }
     }
 
     @Test
     fun setCustomMessageAndDialogViewPrompted() {
-        injectTestConfiguration {
-            testBaseUrl()
-        }
+        injectTestConfiguration {}
         launchActivity<MainActivity>()
 
-        DashboardFragmentRobot()
-            .assertButtonCustomJokeDisplayed()
-            .clickButtonCustomJoke()
+        dashboardFragmentRobot {
+            assertButtonCustomJokeDisplayed()
+            clickButtonCustomJoke()
+        }
 
         mockWebServer.dispatcher = SuccessDispatcher()
 
-        CustomFragmentRobot()
-            .assertFirstNameEditTextViewDisplayed()
-            .clickFirstNameEditTextView()
-            .inputFirstNameEditTextView("Fernando")
-            .assertLastNameEditTextViewDisplayed()
-            .clickLastNameEditTextView()
-            .inputLastNameEditTextView("Prieto")
-            .enabledDoneButton()
-            .clickDoneButton()
+        customFragmentRobot {
+            assertFirstNameEditTextViewDisplayed()
+            clickFirstNameEditTextView()
+            inputFirstNameEditTextView("Fernando")
+            assertLastNameEditTextViewDisplayed()
+            clickLastNameEditTextView()
+            inputLastNameEditTextView("Prieto")
+            enabledDoneButton()
+            clickDoneButton()
+        }
 
-        DashboardFragmentRobot()
-            .assertDialogViewCustomJokeDisplayed()
+        dashboardFragmentRobot {
+            assertDialogViewCustomJokeDisplayed()
+        }
     }
 }
