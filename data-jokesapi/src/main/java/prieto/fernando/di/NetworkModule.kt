@@ -21,7 +21,7 @@ class NetworkModule(
     private val baseUrlOverride: String? = null
 ) {
     @Provides
-    @Named("BASE_URL")
+    @BaseUrl
     fun provideBaseUrl() = baseUrlOverride ?: "https://api.icndb.com/"
 
     @Provides
@@ -29,7 +29,7 @@ class NetworkModule(
     fun provideRetrofitBuilder(
         rxJavaCallAdapterFactory: RxJava2CallAdapterFactory,
         gsonConverterFactory: GsonConverterFactory,
-        @Named("BASE_URL") baseUrl: String
+        @BaseUrl baseUrl: String
     ) = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(gsonConverterFactory)
