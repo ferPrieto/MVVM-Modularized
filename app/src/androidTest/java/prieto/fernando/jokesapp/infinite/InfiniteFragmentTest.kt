@@ -1,26 +1,27 @@
 package prieto.fernando.jokesapp.infinite
 
-import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
 import prieto.fernando.jokesapp.dashboard.dashboardFragmentRobot
-import prieto.fernando.jokesapp.view.MainActivity
+import prieto.fernando.jokesapp.utils.TestConfigurationRule
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
-import prieto.fernando.jokesapp.webmock.injectTestConfiguration
 
 @RunWith(AndroidJUnit4::class)
 class InfiniteFragmentTest {
+
+    @get:Rule
+    val espressoRule = TestConfigurationRule()
 
     private val mockWebServer = MockWebServer()
 
     @Before
     fun setup() {
-        injectTestConfiguration {}
         mockWebServer.start(BuildConfig.PORT)
     }
 
@@ -31,8 +32,6 @@ class InfiniteFragmentTest {
 
     @Test
     fun justTwelveItemsListed() {
-        injectTestConfiguration {}
-        launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
         dashboardFragmentRobot {
@@ -48,8 +47,6 @@ class InfiniteFragmentTest {
 
     @Test
     fun clickItem() {
-        injectTestConfiguration {}
-        launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
         dashboardFragmentRobot {

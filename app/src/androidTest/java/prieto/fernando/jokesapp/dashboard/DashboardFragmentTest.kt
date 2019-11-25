@@ -1,21 +1,23 @@
 package prieto.fernando.jokesapp.dashboard
 
-import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
 import prieto.fernando.jokesapp.custom.customFragmentRobot
 import prieto.fernando.jokesapp.infinite.infiniteFragmentRobot
-import prieto.fernando.jokesapp.view.MainActivity
+import prieto.fernando.jokesapp.utils.TestConfigurationRule
 import prieto.fernando.jokesapp.webmock.SuccessDispatcher
-import prieto.fernando.jokesapp.webmock.injectTestConfiguration
 
 @RunWith(AndroidJUnit4::class)
 class DashboardFragmentTest {
+
+    @get:Rule
+    val espressoRule = TestConfigurationRule()
 
     private val mockWebServer = MockWebServer()
 
@@ -31,8 +33,6 @@ class DashboardFragmentTest {
 
     @Test
     fun openRandomJokeDialog() {
-        injectTestConfiguration {}
-        launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
         dashboardFragmentRobot {
@@ -44,8 +44,6 @@ class DashboardFragmentTest {
 
     @Test
     fun dismissesRandomJokeDialogAfterOk() {
-        injectTestConfiguration {}
-        launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
         dashboardFragmentRobot {
@@ -58,8 +56,6 @@ class DashboardFragmentTest {
 
     @Test
     fun openCustomJokeScreen() {
-        launchActivity<MainActivity>()
-
         dashboardFragmentRobot {
             assertButtonCustomJokeDisplayed()
             clickButtonCustomJoke()
@@ -72,8 +68,6 @@ class DashboardFragmentTest {
 
     @Test
     fun openInfiniteJokesScreen() {
-        injectTestConfiguration {}
-        launchActivity<MainActivity>()
         mockWebServer.dispatcher = SuccessDispatcher()
 
         dashboardFragmentRobot {
