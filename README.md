@@ -26,11 +26,9 @@ In order to follow the latest Android standards, the project will include the ne
 - ~~Add Navigation Module~~ (DONE)
 - ~~Improve UI elements~~ (DONE)
 - ~~Add feature Detail~~ (DONE)
-- Add `Isolation Fragment Tests` (dialog actions, VM interaction, etc). Ref: Test your app's fragments [Ref][ref_fragment]
 - Change modules for feature Module, in order to create two branches: `Feature-Modules` and `Data-Layer-Modules`
 
 
-[ref_fragment]: https://developer.android.com/training/basics/fragments/testing
 [Adam McNeilly]: https://github.com/AdamMc331
 
 ## Libraries Used
@@ -61,7 +59,9 @@ In order to follow the latest Android standards, the project will include the ne
 
 ## Demo
 
-![Demo](Demo-JokesApp.gif)
+<p align="center">
+  <img src="Demo-JokesApp.gif">
+</p>
 
 <a href="https://www.buymeacoffee.com/DSbMElGNU" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
