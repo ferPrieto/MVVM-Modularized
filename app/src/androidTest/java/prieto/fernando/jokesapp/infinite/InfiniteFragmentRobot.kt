@@ -6,8 +6,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import prieto.fernando.jokesapp.R
-import prieto.fernando.jokesapp.utils.RecyclerViewItemCountAssertion
-import prieto.fernando.jokesapp.utils.RecyclerViewMatcher
+import prieto.fernando.android_test.utils.RecyclerViewItemCountAssertion
+import prieto.fernando.android_test.utils.RecyclerViewMatcher
 
 fun infiniteFragmentRobot(func: InfiniteFragmentRobot.() -> Unit) =
     InfiniteFragmentRobot().apply { func() }
@@ -20,12 +20,12 @@ class InfiniteFragmentRobot {
 
     fun assertFirstItemsGroup() = apply {
         onView(recyclerViewMatcher).check(
-            RecyclerViewItemCountAssertion(12)
+            prieto.fernando.android_test.utils.RecyclerViewItemCountAssertion(12)
         )
     }
 
     fun clickItem(position: Int) = apply {
-        val itemMatcher = RecyclerViewMatcher(recyclerViewId).atPosition(position)
+        val itemMatcher = prieto.fernando.android_test.utils.RecyclerViewMatcher(recyclerViewId).atPosition(position)
         onView(itemMatcher).perform(ViewActions.click())
     }
 

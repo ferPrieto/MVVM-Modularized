@@ -18,8 +18,8 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.data.RandomJokeDomainModel
-import prieto.fernando.presentation.RandomJokeUiModel
-import prieto.fernando.presentation.mapper.RandomJokeDomainToUiModelMapper
+import prieto.fernando.model.RandomJokeUiModel
+import prieto.fernando.RandomJokeDomainToUiModelMapper
 import prieto.fernando.presentation.setupViewModelForTests
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
 
@@ -34,12 +34,12 @@ class InfiniteJokesViewModelTest {
     lateinit var multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase
 
     @Mock
-    lateinit var randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
+    lateinit var randomJokeDomainToUiModelMapper: prieto.fernando.RandomJokeDomainToUiModelMapper
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
-    private lateinit var multipleRandomJokesRetrievedTestObserver: Observer<List<RandomJokeUiModel>>
+    private lateinit var multipleRandomJokesRetrievedTestObserver: Observer<List<prieto.fernando.model.RandomJokeUiModel>>
 
     @Before
     fun setUp() {
@@ -61,7 +61,7 @@ class InfiniteJokesViewModelTest {
             "iOS is a good OS",
             emptyList()
         )
-        val randomJokeUiModel = RandomJokeUiModel(
+        val randomJokeUiModel = prieto.fernando.model.RandomJokeUiModel(
             "some Id",
             "iOS is a good OS",
             emptyList()
@@ -77,7 +77,7 @@ class InfiniteJokesViewModelTest {
         cut.multipleRandomJokes()
 
         // Then
-        val captor = ArgumentCaptor.forClass(RandomJokeUiModel::class.java)
+        val captor = ArgumentCaptor.forClass(prieto.fernando.model.RandomJokeUiModel::class.java)
         captor.run {
             verify(multipleRandomJokesRetrievedTestObserver, times(1)).onChanged(listOf(capture()))
             assertEquals(randomJokeUiModelList, value)

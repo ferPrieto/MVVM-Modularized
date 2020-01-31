@@ -6,8 +6,8 @@ import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.presentation.BaseViewModelInputs
 import prieto.fernando.presentation.R
-import prieto.fernando.presentation.RandomJokeUiModel
-import prieto.fernando.presentation.mapper.RandomJokeDomainToUiModelMapper
+import prieto.fernando.model.RandomJokeUiModel
+import prieto.fernando.RandomJokeDomainToUiModelMapper
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
 import timber.log.Timber
 import javax.inject.Inject
@@ -21,19 +21,19 @@ private const val JOKES_REQUESTED = 12
 
 class InfiniteJokesViewModel @Inject constructor(
     private val multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase,
-    private val randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
+    private val randomJokeDomainToUiModelMapper: prieto.fernando.RandomJokeDomainToUiModelMapper
 ) : BaseViewModel(), InfiniteJokeViewModelInputs {
 
     override val inputs: InfiniteJokeViewModelInputs
         get() = this
 
-    private val multipleRandomJokesRetrieved: MutableLiveData<List<RandomJokeUiModel>> =
+    private val multipleRandomJokesRetrieved: MutableLiveData<List<prieto.fernando.model.RandomJokeUiModel>> =
         MutableLiveData()
     private val errorResource: MutableLiveData<Int> = MutableLiveData()
     private val loading: MutableLiveData<Boolean> = MutableLiveData()
     private val jokeSelected: MutableLiveData<String> = MutableLiveData()
 
-    fun multipleRandomJokesRetrieved(): LiveData<List<RandomJokeUiModel>> =
+    fun multipleRandomJokesRetrieved(): LiveData<List<prieto.fernando.model.RandomJokeUiModel>> =
         multipleRandomJokesRetrieved
 
     fun errorResource(): LiveData<Int> = errorResource

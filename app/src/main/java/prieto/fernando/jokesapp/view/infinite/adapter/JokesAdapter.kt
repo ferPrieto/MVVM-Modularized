@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_joke.view.*
 import prieto.fernando.jokesapp.R
-import prieto.fernando.presentation.RandomJokeUiModel
+import prieto.fernando.model.RandomJokeUiModel
 
 interface BindableAdapter<T> {
     fun setData(data: T)
@@ -17,10 +17,10 @@ interface ClickListener {
 }
 
 class JokesAdapter (private val clickListener: ClickListener): RecyclerView.Adapter<JokesAdapter.JokeHolder>(),
-    BindableAdapter<List<RandomJokeUiModel>> {
-    private val jokes = mutableListOf<RandomJokeUiModel>()
+    BindableAdapter<List<prieto.fernando.model.RandomJokeUiModel>> {
+    private val jokes = mutableListOf<prieto.fernando.model.RandomJokeUiModel>()
 
-    override fun setData(data: List<RandomJokeUiModel>) {
+    override fun setData(data: List<prieto.fernando.model.RandomJokeUiModel>) {
         jokes.addAll(data)
         notifyDataSetChanged()
     }
@@ -37,7 +37,7 @@ class JokesAdapter (private val clickListener: ClickListener): RecyclerView.Adap
     }
 
     class JokeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(randomJokeUiModel: RandomJokeUiModel, clickListener: ClickListener) {
+        fun bind(randomJokeUiModel: prieto.fernando.model.RandomJokeUiModel, clickListener: ClickListener) {
             itemView.item_joke.text = randomJokeUiModel.joke
             itemView.setOnClickListener {
                 clickListener.onItemClicked(randomJokeUiModel.joke)

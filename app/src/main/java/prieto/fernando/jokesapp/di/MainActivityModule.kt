@@ -5,13 +5,13 @@ import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import prieto.fernando.jokesapp.view.MainActivity
 import prieto.fernando.jokesapp.view.custom.CustomJokeFragment
-import prieto.fernando.jokesapp.view.dashboard.DashboardFragment
+import prieto.fernando.dashboard.DashboardFragment
 import prieto.fernando.jokesapp.view.detail.DetailFragment
 import prieto.fernando.jokesapp.view.detail.DetailViewModel
 import prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment
 import prieto.fernando.presentation.ViewModelProviderFactory
 import prieto.fernando.presentation.custom.CustomJokeViewModel
-import prieto.fernando.presentation.dashboard.DashboardViewModel
+import prieto.fernando.dashboard.DashboardViewModel
 import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.presentation.main.MainViewModel
 
@@ -22,7 +22,7 @@ internal abstract class MainActivityModule {
     internal abstract fun bindMainActivity(): MainActivity
 
     @ContributesAndroidInjector
-    internal abstract fun bindDashboardFragment(): DashboardFragment
+    internal abstract fun bindDashboardFragment(): prieto.fernando.dashboard.DashboardFragment
 
     @ContributesAndroidInjector
     internal abstract fun bindCustomJokeFragment(): CustomJokeFragment
@@ -43,7 +43,7 @@ internal abstract class MainActivityModule {
 
         @Provides
         @JvmStatic
-        internal fun provideDashboardViewModelFactory(dashboardViewModel: DashboardViewModel): ViewModelProviderFactory<DashboardViewModel> {
+        internal fun provideDashboardViewModelFactory(dashboardViewModel: prieto.fernando.dashboard.DashboardViewModel): ViewModelProviderFactory<prieto.fernando.dashboard.DashboardViewModel> {
             return ViewModelProviderFactory(dashboardViewModel)
         }
 

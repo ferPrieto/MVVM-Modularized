@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="prieto.fernando.jokesapp.view.dashboard.DashboardFragment">
+        android:name="prieto.fernando.dashboard.DashboardFragment">
         <action
             android:id="@+id/goToCustomJokeFragment"
             app:destination="@id/customJokeFragment"

@@ -14,7 +14,7 @@ import prieto.fernando.jokesapp.view.extension.observe
 import prieto.fernando.jokesapp.view.infinite.adapter.ClickListener
 import prieto.fernando.jokesapp.view.infinite.adapter.JokesAdapter
 import prieto.fernando.jokesapp.view.infinite.widget.InfiniteScrollListener
-import prieto.fernando.presentation.RandomJokeUiModel
+import prieto.fernando.model.RandomJokeUiModel
 import prieto.fernando.presentation.infinite.InfiniteJokesViewModel
 import prieto.fernando.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
@@ -73,7 +73,7 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>(), ClickListe
         }
     }
 
-    private fun addJokesToAdapter(randomJokes: List<RandomJokeUiModel>?) {
+    private fun addJokesToAdapter(randomJokes: List<prieto.fernando.model.RandomJokeUiModel>?) {
         randomJokes?.let {
             isLoading = false
             jokesAdapter?.let { adapter ->

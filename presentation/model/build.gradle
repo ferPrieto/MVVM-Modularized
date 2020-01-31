@@ -1,0 +1,8 @@
+apply from: "$rootDir/base-android-library.gradle"
+
+dependencies{
+    implementation project(':domain')
+    implementation project(':core')
+    implementation project(':navigation')
+
+}

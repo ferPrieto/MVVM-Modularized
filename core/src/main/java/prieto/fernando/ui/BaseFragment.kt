@@ -4,6 +4,9 @@ import android.app.AlertDialog
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -74,3 +77,6 @@ abstract class BaseFragment<T : BaseViewModel> : DaggerFragment(), BaseView<T> {
         const val BUTTON_DEBOUNCE_TIMEOUT_MS = 500L
     }
 }
+
+fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
+    liveData.observe(this, Observer(body))

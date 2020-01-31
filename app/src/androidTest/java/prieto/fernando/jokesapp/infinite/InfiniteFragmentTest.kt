@@ -8,15 +8,15 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import prieto.fernando.jokesapp.BuildConfig
-import prieto.fernando.jokesapp.dashboard.dashboardFragmentRobot
-import prieto.fernando.jokesapp.utils.TestConfigurationRule
-import prieto.fernando.jokesapp.webmock.SuccessDispatcher
+import prieto.fernando.dashboard.dashboardFragmentRobot
+import prieto.fernando.android_test.utils.TestConfigurationRule
+import prieto.fernando.android_test.webmock.SuccessDispatcher
 
 @RunWith(AndroidJUnit4::class)
 class InfiniteFragmentTest {
 
     @get:Rule
-    val espressoRule = TestConfigurationRule()
+    val espressoRule = prieto.fernando.android_test.utils.TestConfigurationRule()
 
     private val mockWebServer = MockWebServer()
 
@@ -32,9 +32,9 @@ class InfiniteFragmentTest {
 
     @Test
     fun justTwelveItemsListed() {
-        mockWebServer.dispatcher = SuccessDispatcher()
+        mockWebServer.dispatcher = prieto.fernando.android_test.webmock.SuccessDispatcher()
 
-        dashboardFragmentRobot {
+        prieto.fernando.dashboard.dashboardFragmentRobot {
             assertButtonInfiniteJokesDisplayed()
             clickButtonInfiniteJokes()
         }
@@ -47,9 +47,9 @@ class InfiniteFragmentTest {
 
     @Test
     fun clickItem() {
-        mockWebServer.dispatcher = SuccessDispatcher()
+        mockWebServer.dispatcher = prieto.fernando.android_test.webmock.SuccessDispatcher()
 
-        dashboardFragmentRobot {
+        prieto.fernando.dashboard.dashboardFragmentRobot {
             assertButtonInfiniteJokesDisplayed()
             clickButtonInfiniteJokes()
         }

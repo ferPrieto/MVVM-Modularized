@@ -5,15 +5,15 @@ import org.junit.Before
 import org.junit.Test
 import prieto.fernando.data.CategoryDomainModel
 import prieto.fernando.data.RandomJokeDomainModel
-import prieto.fernando.presentation.CategoryUiModel
-import prieto.fernando.presentation.RandomJokeUiModel
+import prieto.fernando.model.CategoryUiModel
+import prieto.fernando.model.RandomJokeUiModel
 
 class RandomJokeDomainToUiModelMapperTest {
-    private lateinit var cut: RandomJokeDomainToUiModelMapper
+    private lateinit var cut: prieto.fernando.RandomJokeDomainToUiModelMapper
 
     @Before
     fun setUp() {
-        cut = RandomJokeDomainToUiModelMapper()
+        cut = prieto.fernando.RandomJokeDomainToUiModelMapper()
     }
 
     @Test
@@ -25,12 +25,12 @@ class RandomJokeDomainToUiModelMapperTest {
             listOf(CategoryDomainModel.NERDY, CategoryDomainModel.EXPLICIT)
         )
 
-        val expectedResult = RandomJokeUiModel(
+        val expectedResult = prieto.fernando.model.RandomJokeUiModel(
             "some Id",
             "iOS is a good OS",
             listOf(
-                CategoryUiModel.NERDY,
-                CategoryUiModel.EXPLICIT
+                prieto.fernando.model.CategoryUiModel.NERDY,
+                prieto.fernando.model.CategoryUiModel.EXPLICIT
             )
         )
 
@@ -50,7 +50,7 @@ class RandomJokeDomainToUiModelMapperTest {
             emptyList()
         )
 
-        val expectedResult = RandomJokeUiModel(
+        val expectedResult = prieto.fernando.model.RandomJokeUiModel(
             "some Id",
             "iOS is a good OS",
             emptyList()
