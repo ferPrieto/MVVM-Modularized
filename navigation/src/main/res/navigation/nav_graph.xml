@@ -35,5 +35,5 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="prieto.fernando.jokesapp.view.detail.DetailFragment" />
+        android:name="prieto.fernando.detail.DetailFragment" />
 </navigation>

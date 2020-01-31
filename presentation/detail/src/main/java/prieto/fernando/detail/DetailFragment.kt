@@ -1,11 +1,10 @@
-package prieto.fernando.jokesapp.view.detail
+package prieto.fernando.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_detail.*
-import prieto.fernando.jokesapp.R
 import prieto.fernando.ui.BaseFragment
 
 class DetailFragment : BaseFragment<DetailViewModel>() {

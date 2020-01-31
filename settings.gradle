@@ -1,3 +1,3 @@
-include ':app', ':core', ':data-jokesapi', ':domain', ':data-cache', ':presentation', ':navigation', ':presentation:dashboard', ':presentation:model'
+include ':app', ':core', ':data-jokesapi', ':domain', ':data-cache', ':presentation', ':navigation',
+        ':presentation:dashboard', ':presentation:model', ':presentation:android-test', ':presentation:detail'
 rootProject.name = 'JokesApp'
-include ':presentation:android-test'
