@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_infinite_jokes.*
 import prieto.fernando.infinite.adapter.ClickListener
 import prieto.fernando.infinite.adapter.JokesAdapter
 import prieto.fernando.infinite.widget.InfiniteScrollListener
+import prieto.fernando.navigation.DETAIL_FRAGMENT_TYPE_ARG
 import prieto.fernando.ui.BaseFragment
 import prieto.fernando.ui.observe
 import kotlinx.android.synthetic.main.fragment_infinite_jokes.infinite_jokes_recycler as infiniteRecyclerView
@@ -91,7 +92,7 @@ class InfiniteJokesFragment : BaseFragment<InfiniteJokesViewModel>(), ClickListe
 
     private fun navigateToDetailFragment(joke: String?) {
         val args = Bundle().apply {
-            putString(DetailFragment.DETAIL_FRAGMENT_TYPE_ARG, joke)
+            putString(DETAIL_FRAGMENT_TYPE_ARG, joke)
         }
         findNavController().navigate(R.id.goToDetailFragment, args)
     }

@@ -1,18 +1,12 @@
 apply from: "$rootDir/base-android-library.gradle"
 
-dependencies{
+dependencies {
     def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
+    def applicationDependencies = rootProject.ext.mainApplication
 
-    implementation acceptanceTestDependencies.webMockServer
-    implementation acceptanceTestDependencies.testExt
-
-    androidTestImplementation acceptanceTestDependencies.testEspressoContrib, {
+    implementation acceptanceTestDependencies.testEspressoContrib, {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
-    androidTestImplementation acceptanceTestDependencies.testRunner
-    androidTestImplementation acceptanceTestDependencies.testRules
-    androidTestImplementation acceptanceTestDependencies.testExt
-    androidTestImplementation acceptanceTestDependencies.testCore
-    androidTestImplementation acceptanceTestDependencies.coreKtx
-
+    implementation applicationDependencies.recyclerView
+    implementation acceptanceTestDependencies.webMockServer
 }

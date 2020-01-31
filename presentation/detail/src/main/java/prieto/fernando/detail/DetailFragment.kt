@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_detail.*
+import prieto.fernando.navigation.DETAIL_FRAGMENT_TYPE_ARG
 import prieto.fernando.ui.BaseFragment
 
 class DetailFragment : BaseFragment<DetailViewModel>() {
@@ -30,9 +31,5 @@ class DetailFragment : BaseFragment<DetailViewModel>() {
 
     override val viewModel: DetailViewModel by lazy {
         ViewModelProviders.of(this, vmFactory).get(DetailViewModel::class.java)
-    }
-
-    companion object {
-        const val DETAIL_FRAGMENT_TYPE_ARG = "joke"
     }
 }

@@ -18,6 +18,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.model.NamesData
+import prieto.fernando.presentation.BaseSchedulerProvider
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
 
 @RunWith(MockitoJUnitRunner::class)
@@ -33,6 +34,9 @@ class CustomJokeViewModelTest {
     @Mock
     lateinit var buttonStateEvaluator: NamesButtonStateEvaluator
 
+    @Mock
+    lateinit var schedulerProvider: BaseSchedulerProvider
+
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
@@ -45,14 +49,13 @@ class CustomJokeViewModelTest {
             customJokeUseCase,
             buttonStateEvaluator
         )
-        setupViewModelForTests(cut)
+        cut.schedulerProvider = schedulerProvider
 
         customRandomJokeRetrievedTestObserver = mock()
         doneButtonEnabledTestObserver = mock()
         cut.customRandomJokeRetrieved().observeForever(customRandomJokeRetrievedTestObserver)
         cut.doneButtonEnabled().observeForever(doneButtonEnabledTestObserver)
     }
-
 
     @Test
     fun `Given names when customRandomJoke then customRandomJokeRetrieved invoked with expected value`() {
