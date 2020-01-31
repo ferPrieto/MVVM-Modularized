@@ -6,8 +6,6 @@ dependencies{
     implementation acceptanceTestDependencies.webMockServer
     implementation acceptanceTestDependencies.testExt
 
-
-
     androidTestImplementation acceptanceTestDependencies.testEspressoContrib, {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }

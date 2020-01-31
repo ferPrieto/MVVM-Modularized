@@ -1,22 +1,14 @@
 package prieto.fernando.presentation.main
 
-import android.app.Application
-import javax.inject.Inject
 import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.presentation.BaseViewModelInputs
-import prieto.fernando.presentation.BaseViewModelOutputs
+import javax.inject.Inject
 
 interface MainViewModelInputs : BaseViewModelInputs
 
-interface MainViewModelOutputs : BaseViewModelOutputs
-
 open class MainViewModel @Inject constructor() : BaseViewModel(),
-    MainViewModelInputs,
-    MainViewModelOutputs {
+    MainViewModelInputs {
 
     override val inputs: MainViewModelInputs
-        get() = this
-
-    override val outputs: MainViewModelOutputs
         get() = this
 }

@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/infiniteJokesFragment"
-        android:name="prieto.fernando.jokesapp.view.infinite.InfiniteJokesFragment">
+        android:name="prieto.fernando.infinite.InfiniteJokesFragment">
         <action
             android:id="@+id/goToDetailFragment"
             app:destination="@id/detailFragment"
