@@ -1,11 +1,10 @@
-package prieto.fernando.presentation.custom
+package prieto.fernando.custom
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import prieto.fernando.model.NamesData
 import prieto.fernando.presentation.BaseViewModel
 import prieto.fernando.presentation.BaseViewModelInputs
-import prieto.fernando.presentation.R
-import prieto.fernando.presentation.custom.model.NamesData
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
 import timber.log.Timber
 import javax.inject.Inject

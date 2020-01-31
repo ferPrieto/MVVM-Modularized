@@ -1,4 +1,4 @@
-package prieto.fernando.jokesapp.view.custom
+package prieto.fernando.custom
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import prieto.fernando.jokesapp.R
-import prieto.fernando.presentation.custom.CustomJokeViewModel
+import prieto.fernando.model.NamesData
 import prieto.fernando.ui.BaseFragment
+import prieto.fernando.ui.observe
 import kotlinx.android.synthetic.main.fragment_custom_joke.button_done as doneButton
 import kotlinx.android.synthetic.main.fragment_custom_joke.first_name_text as firstName
 import kotlinx.android.synthetic.main.fragment_custom_joke.last_name_text as lastName

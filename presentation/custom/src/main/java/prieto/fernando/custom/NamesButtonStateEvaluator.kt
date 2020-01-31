@@ -1,4 +1,4 @@
-package prieto.fernando.presentation.custom
+package prieto.fernando.custom
 
 import dagger.Reusable
 import java.util.regex.Pattern

@@ -17,14 +17,14 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import prieto.fernando.presentation.custom.CustomJokeViewModel
-import prieto.fernando.presentation.custom.NamesButtonStateEvaluator
+import prieto.fernando.custom.CustomJokeViewModel
+import prieto.fernando.custom.NamesButtonStateEvaluator
 import prieto.fernando.presentation.custom.model.NamesData
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
 
 @RunWith(MockitoJUnitRunner::class)
 class CustomJokeViewModelTest {
-    private lateinit var cut: CustomJokeViewModel
+    private lateinit var cut: prieto.fernando.custom.CustomJokeViewModel
 
     @Mock
     lateinit var application: Application
@@ -33,7 +33,7 @@ class CustomJokeViewModelTest {
     lateinit var customJokeUseCase: GetCustomRandomJokeUseCase
 
     @Mock
-    lateinit var buttonStateEvaluator: NamesButtonStateEvaluator
+    lateinit var buttonStateEvaluator: prieto.fernando.custom.NamesButtonStateEvaluator
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -43,7 +43,7 @@ class CustomJokeViewModelTest {
 
     @Before
     fun setUp() {
-        cut = CustomJokeViewModel(
+        cut = prieto.fernando.custom.CustomJokeViewModel(
             customJokeUseCase,
             buttonStateEvaluator
         )

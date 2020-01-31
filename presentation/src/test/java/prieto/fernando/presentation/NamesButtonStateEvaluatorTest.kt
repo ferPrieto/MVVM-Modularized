@@ -5,7 +5,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import prieto.fernando.presentation.custom.NamesButtonStateEvaluator
+import prieto.fernando.custom.NamesButtonStateEvaluator
 
 @RunWith(Parameterized::class)
 class NamesButtonStateEvaluatorTest(
@@ -51,11 +51,11 @@ class NamesButtonStateEvaluatorTest(
         }
     }
 
-    private lateinit var cut: NamesButtonStateEvaluator
+    private lateinit var cut: prieto.fernando.custom.NamesButtonStateEvaluator
 
     @Before
     fun setUp() {
-        cut = NamesButtonStateEvaluator()
+        cut = prieto.fernando.custom.NamesButtonStateEvaluator()
     }
 
     @Test

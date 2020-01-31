@@ -1,12 +1,3 @@
 <resources>
     <string name="app_name">JokesApp</string>
-    <!-- DASHBOARD -->
-    <string name="dashboard_button_random_joke">RANDOM JOKE</string>
-    <string name="dashboard_button_custom_joke">CUSTOM JOKE</string>
-    <string name="dashboard_button_infinite_jokes">INFINITE JOKES</string>
-
-    <!-- CUSTOM JOKE -->
-    <string name="custom_joke_first_name_hint">First Name</string>
-    <string name="custom_joke_last_name_hint">Last Name</string>
-    <string name="custom_joke_button_done">DONE</string>
 </resources>

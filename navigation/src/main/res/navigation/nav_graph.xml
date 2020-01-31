@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/customJokeFragment"
-        android:name="prieto.fernando.jokesapp.view.custom.CustomJokeFragment" />
+        android:name="prieto.fernando.custom.CustomJokeFragment" />
 
     <fragment
         android:id="@+id/infiniteJokesFragment"

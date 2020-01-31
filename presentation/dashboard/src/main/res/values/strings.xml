@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_button_random_joke">RANDOM JOKE</string>
+    <string name="dashboard_button_custom_joke">CUSTOM JOKE</string>
+    <string name="dashboard_button_infinite_jokes">INFINITE JOKES</string>
+</resources>
