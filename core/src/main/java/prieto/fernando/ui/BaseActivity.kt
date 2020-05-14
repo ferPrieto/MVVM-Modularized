@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
-import prieto.fernando.presentation.SchedulerProvider
-import prieto.fernando.presentation.ViewModelProviderFactory
+import prieto.fernando.vm.SchedulerProvider
+import prieto.fernando.vm.ViewModelProviderFactory
 
 abstract class BaseActivity<T : ViewModel> : DaggerAppCompatActivity(),
     BaseView<T> {

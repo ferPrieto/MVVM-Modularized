@@ -7,6 +7,7 @@ import di.RepositoryModule
 import prieto.fernando.di.ChuckNorrisApiModule
 import prieto.fernando.di.NetworkModule
 import prieto.fernando.jokesapp.JokesApp
+import prieto.fernando.main.di.MainActivityModule
 import javax.inject.Singleton
 
 @Component(

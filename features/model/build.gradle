@@ -1,0 +1,12 @@
+apply from: "$rootDir/base-android-library.gradle"
+
+dependencies{
+    def unitTestDependencies = rootProject.ext.unitTesting
+
+    implementation project(':domain')
+    implementation project(':core')
+    implementation project(':navigation')
+
+    testImplementation unitTestDependencies.coreTesting
+
+}

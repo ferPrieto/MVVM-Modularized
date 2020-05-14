@@ -1,0 +1,17 @@
+apply from: "$rootDir/base-android-library.gradle"
+
+dependencies {
+    def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
+    def applicationDependencies = rootProject.ext.mainApplication
+
+    implementation acceptanceTestDependencies.testEspressoContrib, {
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    }
+    implementation applicationDependencies.recyclerView
+    implementation acceptanceTestDependencies.webMockServer
+    implementation acceptanceTestDependencies.testCore
+    implementation acceptanceTestDependencies.coreKtx
+    implementation applicationDependencies.daggerAndroid
+    implementation applicationDependencies.daggerAndroidSupport
+
+}

@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
-import prieto.fernando.jokesapp.JokesApp
+import prieto.fernando.vm.AppSchedulerProvider
+import prieto.fernando.vm.SchedulerProvider
 import javax.inject.Singleton
-import prieto.fernando.presentation.AppSchedulerProvider
-import prieto.fernando.presentation.SchedulerProvider
-import javax.inject.Named
 
 @Module
 open class AppModule {

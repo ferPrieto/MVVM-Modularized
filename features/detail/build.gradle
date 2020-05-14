@@ -1,0 +1,28 @@
+apply from: "$rootDir/base-android-library.gradle"
+apply plugin: 'kotlin-android-extensions'
+
+dependencies{
+    def applicationDependencies = rootProject.ext.mainApplication
+    def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
+
+    implementation project(':domain')
+    implementation project(':core')
+    implementation project(':navigation')
+    implementation project(':features:model')
+    implementation project(':features:android-test')
+
+    implementation applicationDependencies.timber
+    implementation applicationDependencies.archViewModel
+    implementation applicationDependencies.archNavigationFragment
+    implementation applicationDependencies.archComponents
+
+    androidTestImplementation acceptanceTestDependencies.testEspressoContrib, {
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    }
+    androidTestImplementation acceptanceTestDependencies.testRunner
+    androidTestImplementation acceptanceTestDependencies.testRules
+    androidTestImplementation acceptanceTestDependencies.testExt
+    androidTestImplementation acceptanceTestDependencies.webMockServer
+    androidTestImplementation acceptanceTestDependencies.testCore
+    androidTestImplementation acceptanceTestDependencies.coreKtx
+}

@@ -74,11 +74,18 @@ dependencies {
     def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
 
     implementation project(':core')
+    implementation project(':navigation')
     implementation project(':data-jokesapi')
     implementation project(':data-cache')
     implementation project(':domain')
-    implementation project(':presentation')
-    implementation project(':navigation')
+    implementation project(':features:main')
+    implementation project(':features:custom')
+    implementation project(':features:detail')
+    implementation project(':features:infinite')
+    implementation project(':features:dashboard')
+    implementation project(':features:android-test')
+    implementation project(':features:model')
+
 
     compileOnly applicationDependencies.jdk9Builder
 

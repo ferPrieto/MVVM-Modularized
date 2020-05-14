@@ -17,9 +17,9 @@ import io.reactivex.disposables.CompositeDisposable
 import prieto.fernando.core.R
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import prieto.fernando.presentation.BaseViewModel
-import prieto.fernando.presentation.SchedulerProvider
-import prieto.fernando.presentation.ViewModelProviderFactory
+import prieto.fernando.vm.BaseViewModel
+import prieto.fernando.vm.SchedulerProvider
+import prieto.fernando.vm.ViewModelProviderFactory
 
 abstract class BaseFragment<T : BaseViewModel> : DaggerFragment(), BaseView<T> {
 
