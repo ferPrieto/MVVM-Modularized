@@ -8,7 +8,7 @@ import prieto.fernando.detail.DetailViewModel
 import prieto.fernando.vm.ViewModelProviderFactory
 
 @Module
-internal abstract class DetailModule {
+abstract class DetailModule {
 
     @ContributesAndroidInjector
     internal abstract fun bindDetailFragment(): DetailFragment

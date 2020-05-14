@@ -8,7 +8,7 @@ import prieto.fernando.custom.CustomJokeViewModel
 import prieto.fernando.vm.ViewModelProviderFactory
 
 @Module
-internal abstract class CustomModule {
+abstract class CustomModule {
     @ContributesAndroidInjector
     internal abstract fun bindCustomJokeFragment(): CustomJokeFragment
 

@@ -8,7 +8,7 @@ import prieto.fernando.infinite.InfiniteJokesViewModel
 import prieto.fernando.vm.ViewModelProviderFactory
 
 @Module
-internal abstract class InfiniteModule {
+abstract class InfiniteModule {
     @ContributesAndroidInjector
     internal abstract fun bindInfiniteJokesFragment(): InfiniteJokesFragment
 
