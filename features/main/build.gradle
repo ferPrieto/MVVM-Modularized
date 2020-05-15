@@ -8,6 +8,10 @@ dependencies{
     implementation project(':core')
     implementation project(':navigation')
     implementation project(':features:dashboard')
+    implementation project(':features:custom')
+    implementation project(':features:android-test')
+    implementation project(':features:detail')
+    implementation project(':features:infinite')
 
     implementation applicationDependencies.archNavigationFragment
     implementation applicationDependencies.archNavigationUi
