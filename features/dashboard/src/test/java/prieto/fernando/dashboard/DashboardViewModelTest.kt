@@ -71,6 +71,7 @@ class DashboardViewModelTest {
         randomJokeRetrievedTestObserver = mock()
         customRandomJokeRetrievedTestObserver = mock()
         errorResourceTestObserver = mock()
+
         cut.navigateToCustomJoke().observeForever(navigateToCustomJokeTestObserver)
         cut.navigateToInfiniteJokes().observeForever(navigateToInfiniteJokesTestObserver)
         cut.randomJokeRetrieved().observeForever(randomJokeRetrievedTestObserver)

@@ -53,6 +53,7 @@ ext {
     junit_platform_runner_version = '1.0.2'
     commons_codec_version = '1.12'
     core_testing_version = '1.1.1'
+    live_data_testing = '1.1.1'
 
     //Acceptance Testing
     androidX_test_version = '1.2.0'
@@ -103,7 +104,8 @@ ext {
             mockitoKotlin      : "com.nhaarman:mockito-kotlin:$mockito_kotlin_version",
             junitPlatformRunner: "org.junit.platform:junit-platform-runner:$junit_platform_runner_version",
             commonsCodec       : "commons-codec:commons-codec:$commons_codec_version",
-            coreTesting        : "android.arch.core:core-testing:$core_testing_version"
+            coreTesting        : "android.arch.core:core-testing:$core_testing_version",
+            livedataTesting    : "com.jraska.livedata:testing-ktx:$live_data_testing"
     ]
 
     acceptanceTesting = [

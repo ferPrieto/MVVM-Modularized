@@ -6,9 +6,10 @@ import javax.inject.Inject
 
 interface BaseViewModelInputs
 
+interface BaseViewModelOutputs
 
 open class BaseViewModel : ViewModel(),
-    BaseViewModelInputs {
+    BaseViewModelInputs, BaseViewModelOutputs {
 
     @Inject
     lateinit var schedulerProvider: SchedulerProvider
@@ -23,4 +24,6 @@ open class BaseViewModel : ViewModel(),
     open val inputs: BaseViewModelInputs
         get() = this
 
+    open val outputs: BaseViewModelOutputs
+        get() = this
 }

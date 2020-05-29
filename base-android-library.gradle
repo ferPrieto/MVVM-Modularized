@@ -64,4 +64,5 @@ dependencies {
     testImplementation unitTestDependencies.junitPlatformRunner
     testImplementation unitTestDependencies.commonsCodec
     testImplementation unitTestDependencies.coreTesting
+    testImplementation unitTestDependencies.livedataTesting
 }

@@ -20,8 +20,8 @@ import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.model.RandomJokeDomainToUiModelMapper
 import prieto.fernando.model.RandomJokeUiModel
-import prieto.fernando.vm.BaseSchedulerProvider
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
+import prieto.fernando.vm.BaseSchedulerProvider
 
 @RunWith(MockitoJUnitRunner::class)
 class InfiniteJokesViewModelTest {
@@ -43,6 +43,9 @@ class InfiniteJokesViewModelTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     private lateinit var multipleRandomJokesRetrievedTestObserver: Observer<List<RandomJokeUiModel>>
+    private lateinit var jokeSelectedTestObserver: Observer<String>
+    private lateinit var loadingTestObserver: Observer<Boolean>
+    private lateinit var errorResourceTestObserver: Observer<Int>
 
     @Before
     fun setUp() {
@@ -53,7 +56,14 @@ class InfiniteJokesViewModelTest {
         cut.schedulerProvider = schedulerProvider
 
         multipleRandomJokesRetrievedTestObserver = mock()
+        jokeSelectedTestObserver = mock()
+        loadingTestObserver = mock()
+        errorResourceTestObserver = mock()
+
         cut.multipleRandomJokesRetrieved().observeForever(multipleRandomJokesRetrievedTestObserver)
+        cut.jokeSelected().observeForever(jokeSelectedTestObserver)
+        cut.loading().observeForever(loadingTestObserver)
+        cut.errorResource().observeForever(errorResourceTestObserver)
     }
 
     @Test
@@ -76,6 +86,7 @@ class InfiniteJokesViewModelTest {
         whenever(multipleRandomJokeUseCase.execute(12)).thenReturn(
             Single.just(listOf(randomJokeDomainModel))
         )
+
         // When
         cut.multipleRandomJokes()
 
