@@ -85,7 +85,7 @@ dependencies {
     implementation project(':features:dashboard')
     implementation project(':features:android-test')
     implementation project(':features:model')
-
+    implementation project(':features:test')
 
     compileOnly applicationDependencies.jdk9Builder
 
@@ -125,6 +125,7 @@ dependencies {
     testImplementation unitTestDependencies.junitPlatformRunner
     testImplementation unitTestDependencies.commonsCodec
     testImplementation unitTestDependencies.coreTesting
+    testImplementation project(':features:test')
 
     // Acceptance tests dependencies
     androidTestImplementation acceptanceTestDependencies.testEspressoContrib, {

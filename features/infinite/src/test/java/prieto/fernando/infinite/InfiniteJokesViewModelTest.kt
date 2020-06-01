@@ -20,6 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.model.RandomJokeDomainToUiModelMapper
 import prieto.fernando.model.RandomJokeUiModel
+import prieto.fernando.test.RxImmediateSchedulerRule
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
 import prieto.fernando.vm.TestSchedulerProvider
 
@@ -28,7 +29,7 @@ class InfiniteJokesViewModelTest {
     companion object {
         @ClassRule
         @JvmField
-        val schedulers = RxImmediateSchedulerRule()
+        val schedulers =  RxImmediateSchedulerRule()
     }
 
     private lateinit var cut: InfiniteJokesViewModel

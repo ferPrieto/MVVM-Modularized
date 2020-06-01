@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 class CustomFragmentTest {
 
     @get:Rule
-    val espressoRule = prieto.fernando.jokesapp.TestConfigurationRule()
+    val espressoRule =  TestConfigurationRule()
 
     private val mockWebServer = MockWebServer()
 

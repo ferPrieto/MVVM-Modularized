@@ -10,6 +10,7 @@ dependencies{
     implementation project(':navigation')
     implementation project(':features:model')
     implementation project(':features:android-test')
+    testImplementation project(':features:test')
 
     implementation applicationDependencies.timber
     implementation applicationDependencies.archViewModel

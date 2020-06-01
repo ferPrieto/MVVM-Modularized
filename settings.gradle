@@ -1,4 +1,4 @@
 include ':app', ':core', ':data-jokesapi', ':domain', ':data-cache', ':navigation',
         ':features:dashboard', ':features:detail', ':features:custom', ':features:infinite',
-        ':features:model', ':features:android-test',':features:main'
+        ':features:model', ':features:android-test',':features:main',':features:test'
 rootProject.name = 'JokesApp'

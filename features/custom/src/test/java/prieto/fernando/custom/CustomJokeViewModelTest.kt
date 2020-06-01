@@ -10,6 +10,7 @@ import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Single
 import junit.framework.Assert.assertEquals
 import org.junit.Before
+import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -18,15 +19,20 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.model.NamesData
+import prieto.fernando.test.RxImmediateSchedulerRule
 import prieto.fernando.vm.BaseSchedulerProvider
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
+import prieto.fernando.vm.TestSchedulerProvider
 
 @RunWith(MockitoJUnitRunner::class)
 class CustomJokeViewModelTest {
     private lateinit var cut: CustomJokeViewModel
 
-    @Mock
-    lateinit var application: Application
+    companion object {
+        @ClassRule
+        @JvmField
+        val schedulers = RxImmediateSchedulerRule()
+    }
 
     @Mock
     lateinit var customJokeUseCase: GetCustomRandomJokeUseCase
@@ -49,7 +55,7 @@ class CustomJokeViewModelTest {
             customJokeUseCase,
             buttonStateEvaluator
         )
-        cut.schedulerProvider = schedulerProvider
+        cut.schedulerProvider = TestSchedulerProvider()
 
         customRandomJokeRetrievedTestObserver = mock()
         doneButtonEnabledTestObserver = mock()

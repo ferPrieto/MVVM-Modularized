@@ -1,4 +1,4 @@
-package prieto.fernando.infinite
+package prieto.fernando.test
 
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins

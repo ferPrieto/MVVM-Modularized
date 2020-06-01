@@ -1,6 +1,5 @@
 package prieto.fernando.dashboard
 
-import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockito_kotlin.mock
@@ -10,6 +9,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import junit.framework.Assert.assertEquals
 import org.junit.Before
+import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -20,17 +20,22 @@ import org.mockito.junit.MockitoJUnitRunner
 import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.model.RandomJokeAndTitleResource
 import prieto.fernando.model.RandomJokeDomainToUiModelMapper
-import prieto.fernando.vm.BaseSchedulerProvider
+import prieto.fernando.test.RxImmediateSchedulerRule
 import prieto.fernando.usecase.GetCustomRandomJokeUseCase
 import prieto.fernando.usecase.GetRandomJokeUseCase
 import prieto.fernando.usecase.ResetCustomRandomJokeUseCase
+import prieto.fernando.vm.BaseSchedulerProvider
+import prieto.fernando.vm.TestSchedulerProvider
 
 @RunWith(MockitoJUnitRunner::class)
 class DashboardViewModelTest {
     private lateinit var cut: DashboardViewModel
 
-    @Mock
-    lateinit var application: Application
+    companion object {
+        @ClassRule
+        @JvmField
+        val schedulers = RxImmediateSchedulerRule()
+    }
 
     @Mock
     lateinit var customRandomJokeUseCase: GetCustomRandomJokeUseCase
@@ -64,7 +69,7 @@ class DashboardViewModelTest {
             resetCustomRandomJokeUseCase,
             randomJokeDomainToUiModelMapper
         )
-        cut.schedulerProvider = schedulerProvider
+        cut.schedulerProvider = TestSchedulerProvider()
 
         navigateToCustomJokeTestObserver = mock()
         navigateToInfiniteJokesTestObserver = mock()

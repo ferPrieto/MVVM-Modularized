@@ -1,0 +1,9 @@
+apply from: "$rootDir/base-android-library.gradle"
+apply plugin: 'kotlin-android-extensions'
+
+dependencies{
+    def unitTestDependencies = rootProject.ext.unitTesting
+
+    implementation unitTestDependencies.junit
+    implementation unitTestDependencies.junitPlatformRunner
+}
