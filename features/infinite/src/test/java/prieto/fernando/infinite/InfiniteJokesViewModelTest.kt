@@ -1,6 +1,5 @@
 package prieto.fernando.infinite
 
-import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockito_kotlin.mock
@@ -10,6 +9,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import junit.framework.Assert.assertEquals
 import org.junit.Before
+import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -21,14 +21,17 @@ import prieto.fernando.data.RandomJokeDomainModel
 import prieto.fernando.model.RandomJokeDomainToUiModelMapper
 import prieto.fernando.model.RandomJokeUiModel
 import prieto.fernando.usecase.GetMultipleRandomJokeUseCase
-import prieto.fernando.vm.BaseSchedulerProvider
+import prieto.fernando.vm.TestSchedulerProvider
 
 @RunWith(MockitoJUnitRunner::class)
 class InfiniteJokesViewModelTest {
-    private lateinit var cut: InfiniteJokesViewModel
+    companion object {
+        @ClassRule
+        @JvmField
+        val schedulers = RxImmediateSchedulerRule()
+    }
 
-    @Mock
-    lateinit var application: Application
+    private lateinit var cut: InfiniteJokesViewModel
 
     @Mock
     lateinit var multipleRandomJokeUseCase: GetMultipleRandomJokeUseCase
@@ -36,11 +39,9 @@ class InfiniteJokesViewModelTest {
     @Mock
     lateinit var randomJokeDomainToUiModelMapper: RandomJokeDomainToUiModelMapper
 
-    @Mock
-    lateinit var schedulerProvider: BaseSchedulerProvider
-
-    @get:Rule
-    var rule: TestRule = InstantTaskExecutorRule()
+    @Rule
+    @JvmField
+    val rule: TestRule = InstantTaskExecutorRule()
 
     private lateinit var multipleRandomJokesRetrievedTestObserver: Observer<List<RandomJokeUiModel>>
     private lateinit var jokeSelectedTestObserver: Observer<String>
@@ -53,7 +54,7 @@ class InfiniteJokesViewModelTest {
             multipleRandomJokeUseCase,
             randomJokeDomainToUiModelMapper
         )
-        cut.schedulerProvider = schedulerProvider
+        cut.schedulerProvider = TestSchedulerProvider()
 
         multipleRandomJokesRetrievedTestObserver = mock()
         jokeSelectedTestObserver = mock()

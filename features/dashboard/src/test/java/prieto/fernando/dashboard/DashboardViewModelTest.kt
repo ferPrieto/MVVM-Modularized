@@ -104,6 +104,7 @@ class DashboardViewModelTest {
             Single.just(randomJokeDomainModel)
         )
         // When
+        cut.schedulerProvider = schedulerProvider
         cut.randomJoke()
 
         // Then
